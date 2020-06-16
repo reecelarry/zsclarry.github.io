@@ -1,0 +1,149 @@
+<!doctype html>
+<html><head><meta name="generator" content="Hexo 3.8.0"><title>谈谈小程序的底层原理 | 大数据与智能计算实验室是在我校（电子科技大学中山学院）大数据及其应用平台背景下，以计算机学院为依托单位，以大数据与智能计算实验室为研究基地，整合我校计算机学院、电子信息学院、行业龙头企业、政府部门等多方骨干科研力量和社会力量。</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="referrer" content="never"><meta name="author" content="Lizhooh"><meta name="description" content="大数据与智能计算实验室是在我校（电子科技大学中山学院）大数据及其应用平台背景下，以计算机学院为依托单位，以大数据与智能计算实验室为研究基地，整合我校计算机学院、电子信息学院、行业龙头企业、政府部门等多方骨干科研力量和社会力量。,以大数据表示与建模、大数据分析与处理算法、面向典型应用领域的大数据平台与应用作为核心研究方向，通过 3 年建设周期，在科研成果、人才队伍、平台支撑等方面建设成为持续稳定、特色鲜明的实验室。"><meta name="keywords" content="中山学院、电子科技大学中山学院、电子科技大学中山学院大数据与智能计算实验室、中山市大数据实验室、广东省中山市大数据研究所。"><link rel="canonical" href="https://zsclarry.github.io"><link rel="manifest" href="/manifest.json"><link rel="shortcut icon" href="/assets/favicon.ico"><link href="//lib.baomitu.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet"><script src="//lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script><script src="//lib.baomitu.com/css-doodle/0.6.2/css-doodle.min.js"></script><script>"serviceWorker"in navigator&&window.addEventListener("load",function(){navigator.serviceWorker.register("/service-worker.js")});</script></head><head><meta name="generator" content="Hexo 3.8.0"><link rel="stylesheet" href="/css/app.css"></head><head><meta name="generator" content="Hexo 3.8.0"><script src="/js/zoom.js"></script></head><body><div class="page-navigate"><span class="title"><a href="/">大数据与智能计算实验室</a></span><div style="flex:1"></div><div class="list"><a href="/" class="item">主页</a><a href="/blog/" class="item">博客</a></div><script>!function(){var c=$(".page-navigate"),s={end:$(window).height()-50,start:$(window).height()-50,top:$(window).height()-50,opacity:1};document.addEventListener("scroll",function(t){var o=$(document).scrollTop(),a=.5*$(window).height();a<o+60?c.addClass("active"):c.removeClass("active");var i=o;i>=s.top+25?(0<c.css("opacity")&&c.css("opacity",s.opacity-(i-s.start)/640),s.end=s.top,s.top=i):i<=s.top-25&&(c.css("opacity",1),s.opacity=1,s.start=i,s.top=i),o+60<=a&&(c.css("opacity",1),s.opacity=1,s.start=a)})}();</script></div><div class="post-view"><div class="author-header"><div class="overlay"><h1 class="author-header-title">谈谈小程序的底层原理</h1><img class="author-header-avatar" src="/assets/avatar/a1.jpeg" alt><h3 class="author-header-name"><a href="/author/robot.html" target="_blank">Robot</a></h3><div class="author-header-job">智能的小编</div><div class="author-header-summary">这位同学很懒，什么都没写。</div></div><div style="height:100%">
+        <css-doodle id="cd1" style="display: none">
+        :doodle {
+            @grid: 100x1 / 40vmin;
+            perspective: 50vmin;
+            transform-style: preserve-3d;
+            animation: rd 30s linear infinite;
+            will-change: transform;
+            position: absolute;
+            bottom: 80px;
+            left: 0; right: 0;
+            margin: 0 auto;
+        }
+        margin: auto;
+        @size: 5px .1vmin;
+        @random { height: .2vmin; }
+
+        will-change: transform;
+        transform-style: preserve-3d;
+        background: @p(#00b8a9, #f8f3d4, #f6416c, #ffde7d);
+        animation: cycle @r(2s, 6s, .1) linear infinite;
+        animation-delay: -@r(.1s, 5s);
+
+        --tz: 18vmin;
+        --sc: @r(1, 5, .1);
+
+        transform:
+            rotateY(0)
+            scaleX(var(--sc))
+            translateZ(var(--tz));
+
+        @keyframes cycle {
+            to {
+            transform:
+                rotateY(@p(1turn, -1turn))
+                scaleX(var(--sc))
+                translateZ(var(--tz));
+            }
+        }
+
+        @keyframes rd {
+            to { transform: rotateZ(@p(-2turn, 2turn)) }
+        }
+        </css-doodle>
+        <css-doodle id="cd2">
+        :doodle {
+            @grid: 12 / 30vmin;
+            perspective: 120vmin;
+            transform: scale(.4);
+            position: absolute;
+            bottom: 0;
+            left: 0; right: 0;
+            margin: 0 auto;
+        }
+        :container {
+            animation: sway 100s linear infinite;
+            transform-origin: center;
+            transform-style: preserve-3d;
+        }
+
+        @size: 2vmin;
+        :after, :before {
+            content: '';
+            @size: 50%;
+            transform-style: preserve-3d;
+            background: @p(#00b8a9, #f8f3d4, #f6416c, #ffde7d);
+            animation: move @r(5s, 10s, .1) linear infinite;
+            animation-delay: calc(@i() * -1s);
+        }
+
+        @keyframes sway {
+            0% { transform: rotateX(45deg) rotate(45deg) rotateZ(0); }
+            100% { transform: rotateX(45deg) rotate(45deg) rotateZ(1turn); }
+        }
+
+        @keyframes move {
+            0% { transform: scale(0) rotateZ(45deg) translateZ(0vmin); opacity: 0; }
+            20%, 90% { opacity: 1; }
+            50% { transform: scale(1) rotateZ(45deg) translateZ(-20vmin); }
+            100% { transform: scale(@r(1, 2, .1)) rotateZ(45deg) translateZ(100vmin); opacity: 0; }
+        }
+        </css-doodle>
+        </div><script>!function(){if(window.ActiveXObject||"ActiveXObject"in window){var i=document.createElement("div");i.className="browsehappy",i.innerHTML='<div style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height:55px;font-size:15px;line-height:55px;text-align:center;background-color:#484848;color:#f4f4f4;margin-bottom:40px;">你的 IE 浏览器已经过时了，为了能够正常浏览，请使用 QQ、360、chrome 等极速内核浏览器打开。</div>';!function e(){var t=document.getElementsByTagName("body")[0];void 0===t?setTimeout(e,100):(t.insertBefore(i,t.firstChild),document.getElementById("cd1").style.display="none",document.getElementById("cd2").style.display="none")}()}}();</script><script>!function(){var e=$(window).height();$(".index-header").height(.5*e)}();</script></div><div class="post-view-content"><header><div class="post-view-title">谈谈小程序的底层原理</div><div class="post-box-info"><span class="post-box-time">2019-05-06</span><span class="dot"> · </span><span class="post-box-category">小程序</span><span class="dot"> · </span>字数 <span class="post-box-count">1208</span><span class="dot"> · </span>阅读预计 <span class="post-box-readtime">9</span> 分钟</div></header><section class="post-view-markdown"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>小程序就是基于当前的 Web 规范实现的一种程序，运行在微信里面，既然是基于 Web 规范，那自然离不开 HTML，CSS 和 JS，虽然微信官方给出了不一样的名称：WXML，WXSS，但本质上还是在整个 Web 体系之下构建的。</p>
+<p>这是我为大家带来的一篇微信小程序底层实现原理科普文章，主要讲述了微信小程序的整体架构设计以及底层的视图与逻辑处理原理。</p>
+<a id="more"></a>
+<h2 id="小程序架构"><a href="#小程序架构" class="headerlink" title="小程序架构"></a>小程序架构</h2><p>微信小程序的框架包含两部分，它们在<strong>两个线程</strong>里运行：</p>
+<ul>
+<li><strong>View 视图层</strong> - 用来渲染页面结构，使用 WebView/React-Native-like/Flutter  渲染。</li>
+<li><strong>App Service 逻辑层</strong> - 用来逻辑处理、数据请求、接口调用，使用 JavascriptCode 来运行。</li>
+</ul>
+<blockquote>
+<p>备注：小程序的渲染层一开始是只使用 WebView，后来升级成了 React Native Like，在最新的进展里，底层甚至是使用了 Flutter。如果不支持，最终会降级使用 WebView。</p>
+</blockquote>
+<p>整体结构如下图所示：</p>
+<p><img src="/assets/image/2019/5/20190506105317.png" alt></p>
+<p>小程序的架构有点类似 React Native，渲染层与逻辑层分开不同的线程里运行（React Native 渲染层是在 java 线程上，而逻辑层在 js 线程上）。使用双线程的好处就是<strong>性能</strong>，为了防止逻辑的处理影响视图的渲染导致，界面卡屏掉帧的情况。</p>
+<p>小程序通过 MVVM（双向数据绑定）的方式来实现数据与视图的通信，注意小程序并未实现 Virtual DOM，这点与 React 的实现有一个区分度。</p>
+<p>用户在上传小程序代码后，微信后台会做一个编译阶段的处理，主要是注入参数，过滤非法代码等。</p>
+<h2 id="渲染方式"><a href="#渲染方式" class="headerlink" title="渲染方式"></a>渲染方式</h2><p>小程序使用自定义标签的形式来对开发者进行约束与统一，视图层的渲染还是使用 WebView/React-Native-like/Flutter 进行渲染。不同的是微信自带的腾讯的 X5 浏览器渲染引擎，因此在 WebView/React-Native-like/Flutter 渲染上性能和兼容性会相对好一点。</p>
+<p>小程序的页面文件分为：wxml、wxss、js、json。其中 wxml 和 wxss 与在渲染成上执行的文件。小程序把布局与样式拆分层几个文件，实际上也可以考虑 Vue 的做法，把布局与样式分在一个文件里进行统一管理。</p>
+<p><code>wxml</code> 是开发者编写问页面布局的文件，最终经过小程序的编译后会生成 xx.html 文件，实际上运行的还是 html 代码，不过在编写时，如果你写 div，p 的非小程序规范标签，那么会被小程序在编译阶段进行自动的过滤，也就是不生效。</p>
+<p><code>wxss</code> 是开发者编写问页面样式的文件，最终经过小程序的编译后会生成 xx.css 文件，是一个阉割版的 css。</p>
+<p>与渲染层相关的处理文件是：<code>WAWebview.js</code>，负责渲染层的处理。</p>
+<p>小程序为我们提供了两个级别的组件，一种是非原生，另一种是原生。非原生的组件渲染方式很简单基本是跟 Web Component 差不多。而原生级别的组件渲染方式就相对复杂一定了。</p>
+<p>原生组件的渲染过程：</p>
+<ul>
+<li>组件被创建，包括组件属性会依次赋值。</li>
+<li>组件被插入到 DOM 树里，浏览器内核会立即计算布局，此时我们可以读取出组件相对页面的位置（x, y坐标）、宽高。</li>
+<li>组件通知客户端，客户端在相同的位置上，根据宽高插入一块原生区域，之后客户端就在这块区域渲染界面。</li>
+<li>当位置或宽高发生变化时，组件会通知客户端做相应的调整。</li>
+</ul>
+<blockquote>
+<p>注意所有的原生组件 z-index 都是最高的。</p>
+</blockquote>
+<h2 id="逻辑处理"><a href="#逻辑处理" class="headerlink" title="逻辑处理"></a>逻辑处理</h2><p>App Service 主要做的是处理日志（console）相关 api，wx.xxx 相关 api，调用 native 层相关 api，处理用户逻辑相关代码，还负责处理 config 相关文件。</p>
+<p>对于 console，有一个专门的文件进行处理，那就是 <code>WAConsole.js</code>。</p>
+<p>与逻辑层相关的处理文件是：<code>WAService.js</code>，复杂逻辑层的处理。</p>
+<h2 id="Native-层"><a href="#Native-层" class="headerlink" title="Native 层"></a>Native 层</h2><p>小程序为我们提供 Native 层的 API，例如地理位置，录音等能力。这些原生的接口通过封装形式，使用 jsbridge 的方式进行通信。</p>
+<p>例如当我们调用地理位置 API 时，首先会执行 java native 代码，之后通过 jsbridge 把数据发到 App Service 逻辑层里，逻辑层处理后再执行渲染层的重新渲染，最后展现出相应的界面效果。</p>
+</section><div class="post-view-tags"><span>前端</span><span>小程序</span></div><footer><p>最后更新时间：2020-06-16 09:30:35</p><div><div><b>版权声明：</b>大数据与智能计算实验室，未经允许禁止转载！</div><div><b>作者：</b><span>Robot<span class="dot"> · </span> 智能的小编</span></div></div></footer><div class="post-view-author-view"><div class="post-view-author-view-left"><img src="/assets/avatar/a1.jpeg" class="post-view-author-view-avatar" alt></div><div class="post-view-author-view-right"><a target="_blank" class="post-view-author-view-title" href="/author/robot.html"><span>Robot<span class="dot"> · </span> 智能的小编</span></a><div class="post-view-author-view-summary"><div>这位同学很懒，什么都没写。</div></div></div></div></div><footer><div class="post-view-prev"><h3>上一篇文章</h3><h4><a href="/stories/2019-06-24/后端/Nodejs，Go，Python 框架并发性能比较/index.html">Nodejs，Go，Python 框架并发性能比较</a></h4><div class="post-view-prev-summary">在本文里会介绍几大编程语言和框架的并发能力。
+使用的 Web 框架：
+
+Nodejs：Koa - 下 ...</div><div class="post-view-prev-author"><img src="/assets/avatar/a1.jpeg" alt><span>Robot<span class="dot"> · </span> 智能的小编</span></div></div><div class="post-view-next"><h3>下一篇文章</h3><h4><a href="/stories/2019-04-08/运维/谈谈什么是 DevOps？/index.html">谈谈什么是 DevOps？</a></h4><div class="post-view-next-summary">当我们谈到 DevOps 时，可能讨论的是：流程和管理，运维和自动化，架构和服务，以及文化和组织等等 ...</div><div class="post-view-next-author"><img src="/assets/avatar/a1.jpeg" alt><span>Robot<span class="dot"> · </span> 智能的小编</span></div></div></footer><div class="post-view-toc"><div class="post-view-toc-header"><span>目录</span><i title="收起" class="material-icons">arrow_forward</i></div><div><ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#小程序架构"><span class="post-toc-number">2.</span> <span class="post-toc-text">小程序架构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#渲染方式"><span class="post-toc-number">3.</span> <span class="post-toc-text">渲染方式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#逻辑处理"><span class="post-toc-number">4.</span> <span class="post-toc-text">逻辑处理</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Native-层"><span class="post-toc-number">5.</span> <span class="post-toc-text">Native 层</span></a></li></ol></div></div><div class="post-view-recommend"><div class="post-view-recommend-title">为你推荐</div><div class="post-view-recommend-item"><h4><a href="/stories/2019-03-24/后端/Git Commit 规范要求/index.html">Git Commit 规范要求</a><div class="post-view-recommend-author"><img src="/assets/avatar/a1.jpeg" alt><span>Robot<span class="dot"> · </span> 智能的小编</span></div></h4><div class="post-view-recommend-summary">本文是本厂的 Git Commit 提交的注释规范要求，请大家养成良好的习惯，严格的遵守规则，谢谢。
+
+规范提交的格式：type: message，注意中间使用 : 分割（后面必须带有一个空格），内容不超过 50 字。
+type 用于指定提交的 commit 的类别，下面只允许以下几个动词原语。
+
+add - 新增加的 ...</div></div><div class="post-view-recommend-item"><h4><a href="/stories/2019-06-24/后端/Nodejs，Go，Python 框架并发性能比较/index.html">Nodejs，Go，Python 框架并发性能比较</a><div class="post-view-recommend-author"><img src="/assets/avatar/a1.jpeg" alt><span>Robot<span class="dot"> · </span> 智能的小编</span></div></h4><div class="post-view-recommend-summary">在本文里会介绍几大编程语言和框架的并发能力。
+使用的 Web 框架：
+
+Nodejs：Koa - 下一代的 Nodejs Web 框架。
+Go：Gin - 一个 Golang Web 框架，具有高性能的优点。
+Python：Tornado - 一个 Python Web 框架和异步网络库。
+
+测试环境：
+
+Nodejs ...</div></div><div class="post-view-recommend-item"><h4><a href="/stories/2019-07-28/前端/Team 前端开发规范/index.html">Team 前端开发规范</a><div class="post-view-recommend-author"><img src="/assets/avatar/a1.jpeg" alt><span>Robot<span class="dot"> · </span> 智能的小编</span></div></h4><div class="post-view-recommend-summary">本厂规定的前端开发代码规范风格要求，算是最合理的 Javascript/Typescript/React/JSX 编码规范之一了。
+具备了：
+
+javascript 风格指南。
+react 风格指南。
+less/sass 风格指南。
+
+
+
+版本：v1.0.0更新至：2019-07-29编写：Lizhooh
+
+说明此规范 ...</div></div></div><script>!function(){var t=$(".post-toc .post-toc-link"),o=$(".post-view-toc-header > i"),e=$(".post-view-toc").width(),s=$(".post-view-toc"),i=!0,r=!1;$(".post-view-markdown p > img").attr("data-action","zoom"),t.click(function(t){t.stopPropagation(),r=!0;var o=decodeURIComponent(t.currentTarget.hash),e=$(o).offset().top-75,i=Math.max(300,Math.min(e,800));$("html,body").stop().animate({scrollTop:e},i,function(){r=!1,$(".post-toc-link").removeClass("post-view-toc-active"),$(t.currentTarget).addClass("post-view-toc-active")})}),o.click(function(t){t.stopPropagation(),i?($(".post-toc").hide(),s.width(85),o.text("arrow_back").attr("title","展开")):($(".post-toc").show(),s.width(e),o.text("arrow_forward").attr("title","收起")),i=!i});var n=$(".post-toc-link").map(function(t,o){return{index:t,el:o,offset:$($(o).attr("href")).offset(),id:$(o).attr("href").slice(1)}}).toArray(),l=null,p=0,d=0;document.addEventListener("scroll",function(t){var o=$(document).scrollTop();$(document).height();s&&(o+60>.5*$(window).height()?s.show():s.hide());for(var e=null,i=0;i<n.length&&!(o+100<=n[i].offset.top);i++)e=n[i];if(!e||!l||e.id!==l.id){if((l=e)&&l.el&&!r){function a(t){t<300?t=0:t-=100,s.stop().animate({scrollTop:t},300)}$(".post-toc-link").removeClass("post-view-toc-active"),$(l.el).addClass("post-view-toc-active");var c=$(l.el).offset().top-$(n[0].el).offset().top;0<o-p&&0<c-d&&(a(c),d=c),o-p<0&&c-d<0&&(a(c),d=c)}p=o}})}();</script></div><div class="page-footer"><div class="page-footer-main"><div class="page-footer-top"><header><div class="page-footer-title">大数据与智能计算实验室</div><div class="page-footer-summary"><span>大数据与智能计算实验室是在我校（电子科技大学中山学院）大数据及其应用平台背景下，以计算机学院为依托单位，以大数据与智能计算实验室为研究基地，整合我校计算机学院、电子信息学院、行业龙头企业、政府部门等多方骨干科研力量和社会力量。</span></div></header><section><div><div class="page-footer-info-title">了解更多</div><div><a class="page-footer-link" href="/">首页</a></div><div><a class="page-footer-link" href="/">商业合作</a></div><div><a class="page-footer-link" href="/blog/">技术博客</a></div><div><a class="page-footer-link" href="/about/">关于我们</a></div><div><a class="page-footer-link" href="/joinus/">加入我们</a></div></div><div><div class="page-footer-info-title">合作伙伴</div><div><a class="page-footer-link" href="https://www.aliyun.com" target="_blank"><img src="/assets/icon/aliyun.svg" alt="阿里云"></a></div><div><a class="page-footer-link" href="https://github.com/" target="_blank"><img src="/assets/icon/github.svg" alt="Github" style="height:30px;width:78px;padding-left:3px"></a></div></div></section></div><footer><div>电子科技大学中山学院大数据与智能计算实验室 © 2018 - 2020</div></footer></div></div><div class="page-goto-top"><i class="material-icons">arrow_upward</i><script>!function(){function o(o){var t=$(document).scrollTop();$(window).height()<t?$(".page-goto-top").show():$(".page-goto-top").hide()}$(".page-goto-top").on("click",function(o){$("html,body").animate({scrollTop:0},1e3)}),document.addEventListener("scroll",o),o()}();</script></div></body></html>

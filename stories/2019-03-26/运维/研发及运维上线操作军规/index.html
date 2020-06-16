@@ -1,0 +1,264 @@
+<!doctype html>
+<html><head><meta name="generator" content="Hexo 3.8.0"><title>研发及运维上线操作军规 | 大数据与智能计算实验室是在我校（电子科技大学中山学院）大数据及其应用平台背景下，以计算机学院为依托单位，以大数据与智能计算实验室为研究基地，整合我校计算机学院、电子信息学院、行业龙头企业、政府部门等多方骨干科研力量和社会力量。</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="referrer" content="never"><meta name="author" content="Lizhooh"><meta name="description" content="大数据与智能计算实验室是在我校（电子科技大学中山学院）大数据及其应用平台背景下，以计算机学院为依托单位，以大数据与智能计算实验室为研究基地，整合我校计算机学院、电子信息学院、行业龙头企业、政府部门等多方骨干科研力量和社会力量。,以大数据表示与建模、大数据分析与处理算法、面向典型应用领域的大数据平台与应用作为核心研究方向，通过 3 年建设周期，在科研成果、人才队伍、平台支撑等方面建设成为持续稳定、特色鲜明的实验室。"><meta name="keywords" content="中山学院、电子科技大学中山学院、电子科技大学中山学院大数据与智能计算实验室、中山市大数据实验室、广东省中山市大数据研究所。"><link rel="canonical" href="https://zsclarry.github.io"><link rel="manifest" href="/manifest.json"><link rel="shortcut icon" href="/assets/favicon.ico"><link href="//lib.baomitu.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet"><script src="//lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script><script src="//lib.baomitu.com/css-doodle/0.6.2/css-doodle.min.js"></script><script>"serviceWorker"in navigator&&window.addEventListener("load",function(){navigator.serviceWorker.register("/service-worker.js")});</script></head><head><meta name="generator" content="Hexo 3.8.0"><link rel="stylesheet" href="/css/app.css"></head><head><meta name="generator" content="Hexo 3.8.0"><script src="/js/zoom.js"></script></head><body><div class="page-navigate"><span class="title"><a href="/">大数据与智能计算实验室</a></span><div style="flex:1"></div><div class="list"><a href="/" class="item">主页</a><a href="/blog/" class="item">博客</a></div><script>!function(){var c=$(".page-navigate"),s={end:$(window).height()-50,start:$(window).height()-50,top:$(window).height()-50,opacity:1};document.addEventListener("scroll",function(t){var o=$(document).scrollTop(),a=.5*$(window).height();a<o+60?c.addClass("active"):c.removeClass("active");var i=o;i>=s.top+25?(0<c.css("opacity")&&c.css("opacity",s.opacity-(i-s.start)/640),s.end=s.top,s.top=i):i<=s.top-25&&(c.css("opacity",1),s.opacity=1,s.start=i,s.top=i),o+60<=a&&(c.css("opacity",1),s.opacity=1,s.start=a)})}();</script></div><div class="post-view"><div class="author-header"><div class="overlay"><h1 class="author-header-title">研发及运维上线操作军规</h1><img class="author-header-avatar" src="/assets/avatar/a1.jpeg" alt><h3 class="author-header-name"><a href="/author/robot.html" target="_blank">Robot</a></h3><div class="author-header-job">智能的小编</div><div class="author-header-summary">这位同学很懒，什么都没写。</div></div><div style="height:100%">
+        <css-doodle id="cd1" style="display: none">
+        :doodle {
+            @grid: 100x1 / 40vmin;
+            perspective: 50vmin;
+            transform-style: preserve-3d;
+            animation: rd 30s linear infinite;
+            will-change: transform;
+            position: absolute;
+            bottom: 80px;
+            left: 0; right: 0;
+            margin: 0 auto;
+        }
+        margin: auto;
+        @size: 5px .1vmin;
+        @random { height: .2vmin; }
+
+        will-change: transform;
+        transform-style: preserve-3d;
+        background: @p(#00b8a9, #f8f3d4, #f6416c, #ffde7d);
+        animation: cycle @r(2s, 6s, .1) linear infinite;
+        animation-delay: -@r(.1s, 5s);
+
+        --tz: 18vmin;
+        --sc: @r(1, 5, .1);
+
+        transform:
+            rotateY(0)
+            scaleX(var(--sc))
+            translateZ(var(--tz));
+
+        @keyframes cycle {
+            to {
+            transform:
+                rotateY(@p(1turn, -1turn))
+                scaleX(var(--sc))
+                translateZ(var(--tz));
+            }
+        }
+
+        @keyframes rd {
+            to { transform: rotateZ(@p(-2turn, 2turn)) }
+        }
+        </css-doodle>
+        <css-doodle id="cd2">
+        :doodle {
+            @grid: 12 / 30vmin;
+            perspective: 120vmin;
+            transform: scale(.4);
+            position: absolute;
+            bottom: 0;
+            left: 0; right: 0;
+            margin: 0 auto;
+        }
+        :container {
+            animation: sway 100s linear infinite;
+            transform-origin: center;
+            transform-style: preserve-3d;
+        }
+
+        @size: 2vmin;
+        :after, :before {
+            content: '';
+            @size: 50%;
+            transform-style: preserve-3d;
+            background: @p(#00b8a9, #f8f3d4, #f6416c, #ffde7d);
+            animation: move @r(5s, 10s, .1) linear infinite;
+            animation-delay: calc(@i() * -1s);
+        }
+
+        @keyframes sway {
+            0% { transform: rotateX(45deg) rotate(45deg) rotateZ(0); }
+            100% { transform: rotateX(45deg) rotate(45deg) rotateZ(1turn); }
+        }
+
+        @keyframes move {
+            0% { transform: scale(0) rotateZ(45deg) translateZ(0vmin); opacity: 0; }
+            20%, 90% { opacity: 1; }
+            50% { transform: scale(1) rotateZ(45deg) translateZ(-20vmin); }
+            100% { transform: scale(@r(1, 2, .1)) rotateZ(45deg) translateZ(100vmin); opacity: 0; }
+        }
+        </css-doodle>
+        </div><script>!function(){if(window.ActiveXObject||"ActiveXObject"in window){var i=document.createElement("div");i.className="browsehappy",i.innerHTML='<div style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height:55px;font-size:15px;line-height:55px;text-align:center;background-color:#484848;color:#f4f4f4;margin-bottom:40px;">你的 IE 浏览器已经过时了，为了能够正常浏览，请使用 QQ、360、chrome 等极速内核浏览器打开。</div>';!function e(){var t=document.getElementsByTagName("body")[0];void 0===t?setTimeout(e,100):(t.insertBefore(i,t.firstChild),document.getElementById("cd1").style.display="none",document.getElementById("cd2").style.display="none")}()}}();</script><script>!function(){var e=$(window).height();$(".index-header").height(.5*e)}();</script></div><div class="post-view-content"><header><div class="post-view-title">研发及运维上线操作军规</div><div class="post-box-info"><span class="post-box-time">2019-03-26</span><span class="dot"> · </span><span class="post-box-category">后端</span><span class="dot"> · </span>字数 <span class="post-box-count">2069</span><span class="dot"> · </span>阅读预计 <span class="post-box-readtime">16</span> 分钟</div></header><section class="post-view-markdown"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>为了保证生产环境的持续、稳定、高效地运转，并且使新同学更快的掌握线上操作的基本方法，编写本文加以约束。</p>
+<a id="more"></a>
+<h2 id="名称解析"><a href="#名称解析" class="headerlink" title="名称解析"></a>名称解析</h2><ul>
+<li>OP：运维人员</li>
+<li>RD：研发人员</li>
+<li>FE：前端开发人员</li>
+<li>BE：后端开发人员</li>
+<li>QA：测试人员</li>
+<li>PM：产品经理</li>
+<li>DBA：数据库管理员</li>
+</ul>
+<h2 id="1-线上操作"><a href="#1-线上操作" class="headerlink" title="1. 线上操作"></a>1. 线上操作</h2><p><strong>条款 1.1：禁止流量高峰时期，进行影响 cache 的升级</strong></p>
+<ul>
+<li>内容：对影响 cache 的升级操作禁止在流量高峰进行。</li>
+<li>正确：应该在服务流量低峰期进行上线或操作。</li>
+<li>说明：减少上线或操作对用户的影响，在异常时候减少损失。</li>
+</ul>
+<p><strong>条款 1.2：禁止程序线上“裸奔”</strong></p>
+<ul>
+<li>内容：禁止程序在线上“裸奔”。</li>
+<li>正确：应该在程序上线前增加相应的“监控”，“统计”等。</li>
+<li>说明：防止服务异常时，OP 无法知晓，不能及时处理。</li>
+</ul>
+<p><strong>条款 1.3：禁止上线程序没有“回滚方案”</strong></p>
+<ul>
+<li>内容：禁止程序上线时没有“回滚方案”。</li>
+<li>正确：所有上线必须有回滚方案。</li>
+<li>说明：防止因回滚准备不足，导致回滚时间变长或出错。</li>
+</ul>
+<p><strong>条款 1.4：禁止不进行备份</strong></p>
+<ul>
+<li>内容：禁止不进行备份。</li>
+<li>正确：上线前，至少备份其变更部分。</li>
+<li>说明：避免回滚时无法快速进行有效回滚。</li>
+</ul>
+<p><strong>条款 1.5：禁止无依据操作</strong></p>
+<ul>
+<li>内容：禁止无依据的操作。</li>
+<li>正确：依据已有的 checklist，依据 OP 和 RD 讨论的结论进行。</li>
+<li>说明：避免由于个人单点，对服务处理不当，导致上线操作出现非预期的结果。</li>
+</ul>
+<p><strong>条款 1.6：机器间拷贝数据应限速</strong></p>
+<ul>
+<li>内容：进行线上机器间数据拷贝之前，要查看系统性能、负载，分析和判断后进行。</li>
+<li>正确：数据传输必须进行限速传输。</li>
+<li>说明：避免大数据操作对系统影响。</li>
+</ul>
+<p><strong>条款 1.7：禁止程序上线后不复查</strong></p>
+<ul>
+<li>内容：禁止程序上线后不复查。</li>
+<li>正确：程序上线后，应检查服务资源消耗、服务错误日志。</li>
+</ul>
+<p><strong>条款 1.8：禁止 RD 不按流程上线</strong></p>
+<ul>
+<li>正确：需要经过审核后，通过 deploy 上线。</li>
+<li>说明：防止 RD 误更新导致服务异常。</li>
+</ul>
+<p><strong>条款 1.9：禁止 RD 修改服务资源配置</strong></p>
+<ul>
+<li>内容：修改涉及机器 nginx 等配置，OP 要 review 后才能上线。</li>
+<li>正确：评估 RD 对配置的修改，然后做出上线判断。</li>
+<li>说明：一个服务的资源配置修改会影响到其他服务，甚至整个集群，对配置修改上线需要严格控制。</li>
+</ul>
+<p><strong>条款 1.10：建议在特定时间上线</strong></p>
+<ul>
+<li>内容：下午 6 点后，尽量不上线，尽量不在周六上线。</li>
+<li>正确：尽量在周一至周五的 11-12 点、17–18 点进行上线操作。</li>
+<li>说明：在工作时间进行上线，出现问题，能够及时找到相关人员进行解决。</li>
+</ul>
+<h2 id="2-定时任务"><a href="#2-定时任务" class="headerlink" title="2. 定时任务"></a>2. 定时任务</h2><p><strong>条款 2.1：不建议整点运行任务</strong></p>
+<ul>
+<li>内容：不建议在整点时间运行任务，如 00:00:00。</li>
+<li>正确：应该跳过整点运行，如 00:00:01。</li>
+<li>说明：避免因系统时钟提前运行或不运行导致任务执行异常。</li>
+</ul>
+<p><strong>条款 2.2：禁止程序屏幕打印日志</strong></p>
+<ul>
+<li>内容：不允许程序屏幕打印日志。</li>
+<li>正确：应该将输出重定向到其他文件，或以 <code>&amp;&gt;/dev/null</code> 结尾。</li>
+<li>说明：避免系统将标准输出，打到 <code>/var/spool/clientmqueue/</code> 下，引起根分区空间不足，导致硬盘报警。</li>
+</ul>
+<p><strong>条款 2.3：禁止定时任务“裸奔”</strong></p>
+<ul>
+<li>内容：不允许定时任务“裸奔”。</li>
+<li>正确：应该对定时任务程序进行监控。</li>
+<li>说明：避免因程序异常退出，不能及时处理，导致任务不按时执行。</li>
+</ul>
+<p><strong>条款 2.4：禁止 crontab 中直接写 shell 命令</strong></p>
+<ul>
+<li>内容：不准在 crontab 中直接写 shell 命令（cd 命令除外）。</li>
+<li>正确：如果有需求，必须用脚本封装来实现。</li>
+<li>说明：避免由于 crontab 解析问题引起运行异常。</li>
+</ul>
+<h2 id="3-日志方面"><a href="#3-日志方面" class="headerlink" title="3. 日志方面"></a>3. 日志方面</h2><p><strong>条款 3.1：日志文件须切割</strong></p>
+<ul>
+<li>内容：日志文件须切割。</li>
+<li>正确：日志文件必须切割处理。常用的切割方法包括 cronlog/定期 mv 等。</li>
+<li>说明：大日志文件读写性能低下，防止服务程序日志过大引起服务故障，磁盘空间不足，引发程序错误。</li>
+</ul>
+<p><strong>条款 3.2：禁止线上进行资源高消耗的操作</strong></p>
+<ul>
+<li>内容：线上分析日志时，如果预期要消耗大量资源，不直接在线上操作。</li>
+<li>正确：将日志限速拖到线下再分析。联系 OP 将机器流量摘掉再进行操作。</li>
+<li>说明：系统资源消耗过多，影响线上服务，导致翻车。</li>
+</ul>
+<p><strong>条款 3.3：禁止对 IO 敏感服务使用重定向方式文件覆盖</strong></p>
+<ul>
+<li>内容：对于 IO 敏感的服务，禁止使用重定向的方式进行文件覆盖。</li>
+<li>正确：mv 后，低优先级删除的方式进行。（nice -n **）或者停服务再删。</li>
+<li>说明：防止 IO 抢占影响服务。</li>
+</ul>
+<h2 id="4-文件修改"><a href="#4-文件修改" class="headerlink" title="4. 文件修改"></a>4. 文件修改</h2><p><strong>条款 4.1：禁止直接修改正在运行的程序的配置，数据。</strong></p>
+<ul>
+<li>内容：对于正在运行的程序，其配置，数据，程序文件禁止直接修改。</li>
+<li>正确：应该修改其副本，diff 确认正确后，再进行替换。</li>
+<li>说明：防止程序重启或重载时加载正在修改的文件。</li>
+</ul>
+<p><strong>条款 4.2：禁止线上直接修改程序代码</strong></p>
+<ul>
+<li>内容：禁止在线上直接修改程序代码。</li>
+<li>正确：应该走程序的上线流程来进行上线操作。</li>
+</ul>
+<h2 id="5-安全方面"><a href="#5-安全方面" class="headerlink" title="5. 安全方面"></a>5. 安全方面</h2><p><strong>条款 5.1：禁止裸奔 SQL 语句</strong></p>
+<ul>
+<li>内容：禁止裸奔 SQL 语句，必须做 XSS 及 SQL 注入过滤。</li>
+<li>正确：使用 ROM 框架进行数据库操作，如果直接写 SQL 语句则需要对字符串进行过滤。</li>
+<li>说明：预防 XSS 注入，及 SQL 注入攻击。</li>
+</ul>
+<p><strong>条款 5.2：添加反爬虫机制</strong></p>
+<ul>
+<li>内容：添加反爬虫机制，预防被爬虫大量抓取数据，甚至是拖库。</li>
+<li>正确：添加部分反爬虫机制，限制 API 输出的数据格式。</li>
+</ul>
+<p><strong>条款 5.3：禁止使用“明码”存储的方式设计账号模块</strong></p>
+<ul>
+<li>内容：禁止使用“明码”存储的方式设计账号模块。</li>
+<li>正确：用户账号密码存储应当使用特定的算法（sha256）和加 salt 进行加密存储。</li>
+<li>说明：预防数据库被破解后账号密码涉密。</li>
+</ul>
+<p><strong>条款 5.4：管理员禁止使用过于简单的密码</strong></p>
+<ul>
+<li>内容：管理员禁止使用过于简单的密码，例如 root123，abc12345，123456asdf，admin123 等过于简单的密码。</li>
+<li>正确：使用随机字符串生成工具生成 8 位或 16 位密码，并做备份记录。</li>
+</ul>
+<p><strong>条款 5.5：永远也不要相信客户端的输入</strong></p>
+<ul>
+<li>内容：永远也不要相信客户端的输入，必须做格式校验。</li>
+<li>正确：对客户端的输入进行格式、类型的校验。</li>
+<li>说明：预防数据格式、类型不正确，导致程序运行出错。</li>
+</ul>
+<h2 id="6-Root-用户"><a href="#6-Root-用户" class="headerlink" title="6. Root 用户"></a>6. Root 用户</h2><p><strong>条款 6.1：慎用 <code>kill -g</code> 命令</strong></p>
+<ul>
+<li>内容：慎用 killall -g 命令。</li>
+<li>正确：同源程序会被错误杀掉，如 a 和 b 都由同一个 supervise 调用，就会出问题。</li>
+</ul>
+<p><strong>条款 6.2：禁止使用 <code>rm –rf *</code> 进行文件删除</strong></p>
+<ul>
+<li>内容：禁止使用 <code>rm –rf *</code> 进行文件删除</li>
+<li>正确：建立一个 <code>trashcan</code> 目录，删除文件时使用 mv 移动到 trashcan 里，每个星期 OP 对 trashcan 里的文件进行 rm 操作。</li>
+<li>说明：避免失误操作 <code>rm -rf /</code> 造成的惨剧（血案）！</li>
+</ul>
+<h2 id="7-故障处理"><a href="#7-故障处理" class="headerlink" title="7. 故障处理"></a>7. 故障处理</h2><p><strong>条款 7.1：当发生故障时，首先保证服务可用</strong></p>
+<ul>
+<li>内容：当服务出现故障，一定先保证线上服务可用，再进行定位。</li>
+<li>正确：可以采取的方案包括将部分机器摘掉以保存现场，手动备份日志等。</li>
+</ul>
+</section><div class="post-view-tags"><span>后端</span></div><footer><p>最后更新时间：2020-06-16 09:30:35</p><div><div><b>版权声明：</b>大数据与智能计算实验室，未经允许禁止转载！</div><div><b>作者：</b><span>Robot<span class="dot"> · </span> 智能的小编</span></div></div></footer><div class="post-view-author-view"><div class="post-view-author-view-left"><img src="/assets/avatar/a1.jpeg" class="post-view-author-view-avatar" alt></div><div class="post-view-author-view-right"><a target="_blank" class="post-view-author-view-title" href="/author/robot.html"><span>Robot<span class="dot"> · </span> 智能的小编</span></a><div class="post-view-author-view-summary"><div>这位同学很懒，什么都没写。</div></div></div></div></div><footer><div class="post-view-prev"><h3>上一篇文章</h3><h4><a href="/stories/2019-04-08/运维/谈谈什么是 DevOps？/index.html">谈谈什么是 DevOps？</a></h4><div class="post-view-prev-summary">当我们谈到 DevOps 时，可能讨论的是：流程和管理，运维和自动化，架构和服务，以及文化和组织等等 ...</div><div class="post-view-prev-author"><img src="/assets/avatar/a1.jpeg" alt><span>Robot<span class="dot"> · </span> 智能的小编</span></div></div><div class="post-view-next"><h3>下一篇文章</h3><h4><a href="/stories/2019-03-24/后端/Git Commit 规范要求/index.html">Git Commit 规范要求</a></h4><div class="post-view-next-summary">本文是本厂的 Git Commit 提交的注释规范要求，请大家养成良好的习惯，严格的遵守规则，谢谢。 ...</div><div class="post-view-next-author"><img src="/assets/avatar/a1.jpeg" alt><span>Robot<span class="dot"> · </span> 智能的小编</span></div></div></footer><div class="post-view-toc"><div class="post-view-toc-header"><span>目录</span><i title="收起" class="material-icons">arrow_forward</i></div><div><ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#名称解析"><span class="post-toc-number">2.</span> <span class="post-toc-text">名称解析</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-线上操作"><span class="post-toc-number">3.</span> <span class="post-toc-text">1. 线上操作</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-定时任务"><span class="post-toc-number">4.</span> <span class="post-toc-text">2. 定时任务</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-日志方面"><span class="post-toc-number">5.</span> <span class="post-toc-text">3. 日志方面</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-文件修改"><span class="post-toc-number">6.</span> <span class="post-toc-text">4. 文件修改</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-安全方面"><span class="post-toc-number">7.</span> <span class="post-toc-text">5. 安全方面</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-Root-用户"><span class="post-toc-number">8.</span> <span class="post-toc-text">6. Root 用户</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-故障处理"><span class="post-toc-number">9.</span> <span class="post-toc-text">7. 故障处理</span></a></li></ol></div></div><div class="post-view-recommend"><div class="post-view-recommend-title">为你推荐</div><div class="post-view-recommend-item"><h4><a href="/stories/2019-03-24/后端/Git Commit 规范要求/index.html">Git Commit 规范要求</a><div class="post-view-recommend-author"><img src="/assets/avatar/a1.jpeg" alt><span>Robot<span class="dot"> · </span> 智能的小编</span></div></h4><div class="post-view-recommend-summary">本文是本厂的 Git Commit 提交的注释规范要求，请大家养成良好的习惯，严格的遵守规则，谢谢。
+
+规范提交的格式：type: message，注意中间使用 : 分割（后面必须带有一个空格），内容不超过 50 字。
+type 用于指定提交的 commit 的类别，下面只允许以下几个动词原语。
+
+add - 新增加的 ...</div></div><div class="post-view-recommend-item"><h4><a href="/stories/2018-02-09/大数据/Python 大数据分析（工具篇）/index.html">Python 大数据分析（工具篇）</a><div class="post-view-recommend-author"><img src="/assets/avatar/a1.jpeg" alt><span>Robot<span class="dot"> · </span> 智能的小编</span></div></h4><div class="post-view-recommend-summary">Python 的语法简洁，成熟的库繁多，开发效率高。Python 在大数据分析领域上有非常好的优势。本文介绍 Python 在大数据分析领域的工具库，包括了以下这几个库：
+
+数据分析利器：Numpy
+数据可视化：Matplotlib
+础数据分析：Pandas
+高级科学计算：Scipy
+
+
+数据分析利器：NumpyNum ...</div></div><div class="post-view-recommend-item"><h4><a href="/stories/2019-05-06/小程序/谈谈小程序的底层原理/index.html">谈谈小程序的底层原理</a><div class="post-view-recommend-author"><img src="/assets/avatar/a1.jpeg" alt><span>Robot<span class="dot"> · </span> 智能的小编</span></div></h4><div class="post-view-recommend-summary">小程序就是基于当前的 Web 规范实现的一种程序，运行在微信里面，既然是基于 Web 规范，那自然离不开 HTML，CSS 和 JS，虽然微信官方给出了不一样的名称：WXML，WXSS，但本质上还是在整个 Web 体系之下构建的。
+这是我为大家带来的一篇微信小程序底层实现原理科普文章，主要讲述了微信小程序的整体架构设计 ...</div></div></div><script>!function(){var t=$(".post-toc .post-toc-link"),o=$(".post-view-toc-header > i"),e=$(".post-view-toc").width(),s=$(".post-view-toc"),i=!0,r=!1;$(".post-view-markdown p > img").attr("data-action","zoom"),t.click(function(t){t.stopPropagation(),r=!0;var o=decodeURIComponent(t.currentTarget.hash),e=$(o).offset().top-75,i=Math.max(300,Math.min(e,800));$("html,body").stop().animate({scrollTop:e},i,function(){r=!1,$(".post-toc-link").removeClass("post-view-toc-active"),$(t.currentTarget).addClass("post-view-toc-active")})}),o.click(function(t){t.stopPropagation(),i?($(".post-toc").hide(),s.width(85),o.text("arrow_back").attr("title","展开")):($(".post-toc").show(),s.width(e),o.text("arrow_forward").attr("title","收起")),i=!i});var n=$(".post-toc-link").map(function(t,o){return{index:t,el:o,offset:$($(o).attr("href")).offset(),id:$(o).attr("href").slice(1)}}).toArray(),l=null,p=0,d=0;document.addEventListener("scroll",function(t){var o=$(document).scrollTop();$(document).height();s&&(o+60>.5*$(window).height()?s.show():s.hide());for(var e=null,i=0;i<n.length&&!(o+100<=n[i].offset.top);i++)e=n[i];if(!e||!l||e.id!==l.id){if((l=e)&&l.el&&!r){function a(t){t<300?t=0:t-=100,s.stop().animate({scrollTop:t},300)}$(".post-toc-link").removeClass("post-view-toc-active"),$(l.el).addClass("post-view-toc-active");var c=$(l.el).offset().top-$(n[0].el).offset().top;0<o-p&&0<c-d&&(a(c),d=c),o-p<0&&c-d<0&&(a(c),d=c)}p=o}})}();</script></div><div class="page-footer"><div class="page-footer-main"><div class="page-footer-top"><header><div class="page-footer-title">大数据与智能计算实验室</div><div class="page-footer-summary"><span>大数据与智能计算实验室是在我校（电子科技大学中山学院）大数据及其应用平台背景下，以计算机学院为依托单位，以大数据与智能计算实验室为研究基地，整合我校计算机学院、电子信息学院、行业龙头企业、政府部门等多方骨干科研力量和社会力量。</span></div></header><section><div><div class="page-footer-info-title">了解更多</div><div><a class="page-footer-link" href="/">首页</a></div><div><a class="page-footer-link" href="/">商业合作</a></div><div><a class="page-footer-link" href="/blog/">技术博客</a></div><div><a class="page-footer-link" href="/about/">关于我们</a></div><div><a class="page-footer-link" href="/joinus/">加入我们</a></div></div><div><div class="page-footer-info-title">合作伙伴</div><div><a class="page-footer-link" href="https://www.aliyun.com" target="_blank"><img src="/assets/icon/aliyun.svg" alt="阿里云"></a></div><div><a class="page-footer-link" href="https://github.com/" target="_blank"><img src="/assets/icon/github.svg" alt="Github" style="height:30px;width:78px;padding-left:3px"></a></div></div></section></div><footer><div>电子科技大学中山学院大数据与智能计算实验室 © 2018 - 2020</div></footer></div></div><div class="page-goto-top"><i class="material-icons">arrow_upward</i><script>!function(){function o(o){var t=$(document).scrollTop();$(window).height()<t?$(".page-goto-top").show():$(".page-goto-top").hide()}$(".page-goto-top").on("click",function(o){$("html,body").animate({scrollTop:0},1e3)}),document.addEventListener("scroll",o),o()}();</script></div></body></html>

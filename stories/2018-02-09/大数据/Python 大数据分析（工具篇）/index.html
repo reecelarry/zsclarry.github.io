@@ -1,0 +1,497 @@
+<!doctype html>
+<html><head><meta name="generator" content="Hexo 3.8.0"><title>Python 大数据分析（工具篇） | 大数据与智能计算实验室是在我校（电子科技大学中山学院）大数据及其应用平台背景下，以计算机学院为依托单位，以大数据与智能计算实验室为研究基地，整合我校计算机学院、电子信息学院、行业龙头企业、政府部门等多方骨干科研力量和社会力量。</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="referrer" content="never"><meta name="author" content="Lizhooh"><meta name="description" content="大数据与智能计算实验室是在我校（电子科技大学中山学院）大数据及其应用平台背景下，以计算机学院为依托单位，以大数据与智能计算实验室为研究基地，整合我校计算机学院、电子信息学院、行业龙头企业、政府部门等多方骨干科研力量和社会力量。,以大数据表示与建模、大数据分析与处理算法、面向典型应用领域的大数据平台与应用作为核心研究方向，通过 3 年建设周期，在科研成果、人才队伍、平台支撑等方面建设成为持续稳定、特色鲜明的实验室。"><meta name="keywords" content="中山学院、电子科技大学中山学院、电子科技大学中山学院大数据与智能计算实验室、中山市大数据实验室、广东省中山市大数据研究所。"><link rel="canonical" href="https://zsclarry.github.io"><link rel="manifest" href="/manifest.json"><link rel="shortcut icon" href="/assets/favicon.ico"><link href="//lib.baomitu.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet"><script src="//lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script><script src="//lib.baomitu.com/css-doodle/0.6.2/css-doodle.min.js"></script><script>"serviceWorker"in navigator&&window.addEventListener("load",function(){navigator.serviceWorker.register("/service-worker.js")});</script></head><head><meta name="generator" content="Hexo 3.8.0"><link rel="stylesheet" href="/css/app.css"></head><head><meta name="generator" content="Hexo 3.8.0"><script src="/js/zoom.js"></script></head><body><div class="page-navigate"><span class="title"><a href="/">大数据与智能计算实验室</a></span><div style="flex:1"></div><div class="list"><a href="/" class="item">主页</a><a href="/blog/" class="item">博客</a></div><script>!function(){var c=$(".page-navigate"),s={end:$(window).height()-50,start:$(window).height()-50,top:$(window).height()-50,opacity:1};document.addEventListener("scroll",function(t){var o=$(document).scrollTop(),a=.5*$(window).height();a<o+60?c.addClass("active"):c.removeClass("active");var i=o;i>=s.top+25?(0<c.css("opacity")&&c.css("opacity",s.opacity-(i-s.start)/640),s.end=s.top,s.top=i):i<=s.top-25&&(c.css("opacity",1),s.opacity=1,s.start=i,s.top=i),o+60<=a&&(c.css("opacity",1),s.opacity=1,s.start=a)})}();</script></div><div class="post-view"><div class="author-header"><div class="overlay"><h1 class="author-header-title">Python 大数据分析（工具篇）</h1><img class="author-header-avatar" src="/assets/avatar/a1.jpeg" alt><h3 class="author-header-name"><a href="/author/robot.html" target="_blank">Robot</a></h3><div class="author-header-job">智能的小编</div><div class="author-header-summary">这位同学很懒，什么都没写。</div></div><div style="height:100%">
+        <css-doodle id="cd1" style="display: none">
+        :doodle {
+            @grid: 100x1 / 40vmin;
+            perspective: 50vmin;
+            transform-style: preserve-3d;
+            animation: rd 30s linear infinite;
+            will-change: transform;
+            position: absolute;
+            bottom: 80px;
+            left: 0; right: 0;
+            margin: 0 auto;
+        }
+        margin: auto;
+        @size: 5px .1vmin;
+        @random { height: .2vmin; }
+
+        will-change: transform;
+        transform-style: preserve-3d;
+        background: @p(#00b8a9, #f8f3d4, #f6416c, #ffde7d);
+        animation: cycle @r(2s, 6s, .1) linear infinite;
+        animation-delay: -@r(.1s, 5s);
+
+        --tz: 18vmin;
+        --sc: @r(1, 5, .1);
+
+        transform:
+            rotateY(0)
+            scaleX(var(--sc))
+            translateZ(var(--tz));
+
+        @keyframes cycle {
+            to {
+            transform:
+                rotateY(@p(1turn, -1turn))
+                scaleX(var(--sc))
+                translateZ(var(--tz));
+            }
+        }
+
+        @keyframes rd {
+            to { transform: rotateZ(@p(-2turn, 2turn)) }
+        }
+        </css-doodle>
+        <css-doodle id="cd2">
+        :doodle {
+            @grid: 12 / 30vmin;
+            perspective: 120vmin;
+            transform: scale(.4);
+            position: absolute;
+            bottom: 0;
+            left: 0; right: 0;
+            margin: 0 auto;
+        }
+        :container {
+            animation: sway 100s linear infinite;
+            transform-origin: center;
+            transform-style: preserve-3d;
+        }
+
+        @size: 2vmin;
+        :after, :before {
+            content: '';
+            @size: 50%;
+            transform-style: preserve-3d;
+            background: @p(#00b8a9, #f8f3d4, #f6416c, #ffde7d);
+            animation: move @r(5s, 10s, .1) linear infinite;
+            animation-delay: calc(@i() * -1s);
+        }
+
+        @keyframes sway {
+            0% { transform: rotateX(45deg) rotate(45deg) rotateZ(0); }
+            100% { transform: rotateX(45deg) rotate(45deg) rotateZ(1turn); }
+        }
+
+        @keyframes move {
+            0% { transform: scale(0) rotateZ(45deg) translateZ(0vmin); opacity: 0; }
+            20%, 90% { opacity: 1; }
+            50% { transform: scale(1) rotateZ(45deg) translateZ(-20vmin); }
+            100% { transform: scale(@r(1, 2, .1)) rotateZ(45deg) translateZ(100vmin); opacity: 0; }
+        }
+        </css-doodle>
+        </div><script>!function(){if(window.ActiveXObject||"ActiveXObject"in window){var i=document.createElement("div");i.className="browsehappy",i.innerHTML='<div style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height:55px;font-size:15px;line-height:55px;text-align:center;background-color:#484848;color:#f4f4f4;margin-bottom:40px;">你的 IE 浏览器已经过时了，为了能够正常浏览，请使用 QQ、360、chrome 等极速内核浏览器打开。</div>';!function e(){var t=document.getElementsByTagName("body")[0];void 0===t?setTimeout(e,100):(t.insertBefore(i,t.firstChild),document.getElementById("cd1").style.display="none",document.getElementById("cd2").style.display="none")}()}}();</script><script>!function(){var e=$(window).height();$(".index-header").height(.5*e)}();</script></div><div class="post-view-content"><header><div class="post-view-title">Python 大数据分析（工具篇）</div><div class="post-box-info"><span class="post-box-time">2018-02-09</span><span class="dot"> · </span><span class="post-box-category">Python</span><span class="dot"> · </span>字数 <span class="post-box-count">5270</span><span class="dot"> · </span>阅读预计 <span class="post-box-readtime">39</span> 分钟</div></header><section class="post-view-markdown"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Python 的语法简洁，成熟的库繁多，开发效率高。Python 在大数据分析领域上有非常好的优势。<br>本文介绍 Python 在大数据分析领域的工具库，包括了以下这几个库：</p>
+<ul>
+<li>数据分析利器：Numpy</li>
+<li>数据可视化：Matplotlib</li>
+<li>础数据分析：Pandas</li>
+<li>高级科学计算：Scipy</li>
+</ul>
+<a id="more"></a>
+<h2 id="数据分析利器：Numpy"><a href="#数据分析利器：Numpy" class="headerlink" title="数据分析利器：Numpy"></a>数据分析利器：Numpy</h2><p><code>Numpy</code> 是什么？Numpy 就是一个 Python 的科学计算库，可用于科学计算，大数据分析，具有矢量运算能力，快速、节省空间的特点。<br>下面就来介绍一下 Numpy 的使用方法与基本知识。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>安装 Numpy 不能直接 pip install，需要先下载一个文件 <code>.whl</code> - <a href="https://pypi.python.org/pypi/numpy#downloads" target="_blank" rel="noopener">Download</a></p>
+<p>下载后，去到文件目录里进行安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> D:\Numpy</span><br><span class="line">pip install numpy-1.14.0-cp36-none-win32.whl <span class="comment"># 我 64 位，只能安装 32 位才成功？</span></span><br><span class="line"></span><br><span class="line">Processing d:\numpy\numpy-1.14.0-cp36-none-win32.whl</span><br><span class="line">Installing collected packages: numpy</span><br><span class="line">Successfully installed numpy-1.14.0</span><br></pre></td></tr></table></figure>
+<p>安装成功后，测试一下：</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">print</span> (np.random.rand(<span class="number">4</span>, <span class="number">4</span>))</span><br></pre></td></tr></table></figure>
+<p>能正常输出随机矩阵就可以了。</p>
+<h3 id="维数组"><a href="#维数组" class="headerlink" title="维数组"></a>维数组</h3><p>Python 里有列表（List），但是在我看来就是数组，Numpy 里有自己的数组（ndarray），要求是数组的类型是相同的。</p>
+<p>Numpy.array 有几个比较常用的属性：</p>
+<ul>
+<li><code>ndim</code> 表示维度个数。</li>
+<li><code>shape</code> 表示各维度大小。</li>
+<li><code>dtype</code> 表示数据类型。</li>
+</ul>
+<p>Numpy.array 的构造函数可以使用列表来初始化，初始化的维度自动识别。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">a1 = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])</span><br><span class="line">a2 = np.array([</span><br><span class="line">    [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">    [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>],</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">print(type(a1))     <span class="comment"># &lt;class 'numpy.ndarray'&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> (a1.dtype)    <span class="comment"># init 32</span></span><br><span class="line"><span class="keyword">print</span> (a2.dtype)    <span class="comment"># init 32</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> (a1.ndim)     <span class="comment"># 维度 1</span></span><br><span class="line"><span class="keyword">print</span> (a2.ndim)     <span class="comment"># 维度 2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> (a1.shape)    <span class="comment"># (6, )</span></span><br><span class="line"><span class="keyword">print</span> (a2.shape)    <span class="comment"># (2, 3) (行, 列)</span></span><br></pre></td></tr></table></figure>
+<p>在构造时可以传入参数指定数组类型。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">x = np.array([<span class="number">1</span>, <span class="number">2.6</span>, <span class="number">3</span>], np.int64)</span><br><span class="line">print(x.dtype) <span class="comment"># int64</span></span><br></pre></td></tr></table></figure>
+<h3 id="矢量化运算"><a href="#矢量化运算" class="headerlink" title="矢量化运算"></a>矢量化运算</h3><p>ndarray 支持矢量运算，要求就是要有相同的维度。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line">x = numpy.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">print(x * <span class="number">2</span>)    <span class="comment"># [2 4 6]</span></span><br><span class="line">print(x &gt; <span class="number">2</span>)    <span class="comment"># [False False  True]</span></span><br><span class="line">y = numpy.array([<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])</span><br><span class="line">print(x + y)    <span class="comment"># [4 6 8]</span></span><br><span class="line">print(x &gt; y)    <span class="comment"># [False False False]</span></span><br></pre></td></tr></table></figure>
+<h3 id="数组索引"><a href="#数组索引" class="headerlink" title="数组索引"></a>数组索引</h3><p>ndarray 的索引非常多种玩法。常见的有普通索引，不常见的有布尔索引和花式索引。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line"></span><br><span class="line">x = numpy.array([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>], [<span class="number">5</span>, <span class="number">6</span>]])</span><br><span class="line">print(x[<span class="number">0</span>])            <span class="comment"># [1,2] 第 0 列</span></span><br><span class="line">print(x[<span class="number">0</span>][<span class="number">1</span>])         <span class="comment"># 2</span></span><br><span class="line">print(x[<span class="number">0</span>, <span class="number">1</span>])         <span class="comment"># 2</span></span><br><span class="line">x = numpy.array([</span><br><span class="line">    [</span><br><span class="line">        [<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]],</span><br><span class="line">        [[<span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>]</span><br><span class="line">    ]</span><br><span class="line">])</span><br><span class="line">print(x[<span class="number">0</span>])            <span class="comment"># [[1 2], [3 4]]</span></span><br><span class="line"></span><br><span class="line">x = numpy.array([<span class="number">3</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">0</span>])</span><br><span class="line">y = numpy.array([<span class="literal">True</span>, <span class="literal">False</span>, <span class="literal">True</span>, <span class="literal">False</span>, <span class="literal">True</span>, <span class="literal">False</span>])</span><br><span class="line"></span><br><span class="line">print(x[y])            <span class="comment"># [3,3,3]，x[ 这里是接收布尔值 ]</span></span><br><span class="line">print(x[y == <span class="literal">False</span>])   <span class="comment"># [2,1,0]</span></span><br><span class="line">print(x &gt;= <span class="number">3</span>)          <span class="comment"># [ True False  True False  True  False] 矢量运算</span></span><br><span class="line"><span class="keyword">print</span> x[~(x &gt;= <span class="number">3</span>)]     <span class="comment"># [2,1,0]</span></span><br><span class="line"></span><br><span class="line">print((x == <span class="number">2</span>) | (x == <span class="number">1</span>))     <span class="comment"># [False True False True False False]</span></span><br><span class="line">print(x[(x == <span class="number">2</span>) | (x == <span class="number">1</span>)])  <span class="comment"># [2 1]</span></span><br></pre></td></tr></table></figure>
+<h3 id="数组切片"><a href="#数组切片" class="headerlink" title="数组切片"></a>数组切片</h3><p>ndarray 的切片基本与 Python 列表相同。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line"></span><br><span class="line">x = numpy.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])</span><br><span class="line">print(x[<span class="number">1</span>:<span class="number">3</span>])           <span class="comment"># [2,3]</span></span><br><span class="line">print(x[:<span class="number">3</span>])            <span class="comment"># [1,2,3]</span></span><br><span class="line">print(x[<span class="number">1</span>:])            <span class="comment"># [2,3,4,5]</span></span><br><span class="line">print(x[<span class="number">0</span>:<span class="number">4</span>:<span class="number">2</span>])         <span class="comment"># [1,3]，0, 4 是边界，2 指的是下标增 2</span></span><br><span class="line">x = numpy.array([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>], [<span class="number">5</span>, <span class="number">6</span>]])</span><br><span class="line">print(x[:<span class="number">2</span>])            <span class="comment"># [[1 2], [3 4]]</span></span><br><span class="line">print(x[:<span class="number">2</span>, :<span class="number">1</span>])        <span class="comment"># [[1],[3]]，0 - 2 行，0 - 1 列</span></span><br><span class="line">x[:<span class="number">2</span>, :<span class="number">1</span>] = <span class="number">0</span>           <span class="comment"># 用标量赋值</span></span><br><span class="line">print(x)                <span class="comment"># [[0,2], [0,4], [5,6]]</span></span><br><span class="line">x[:<span class="number">2</span>, :<span class="number">1</span>] = [[<span class="number">8</span>], [<span class="number">6</span>]]  <span class="comment"># 用数组赋值</span></span><br><span class="line">print(x)                <span class="comment"># [[8,2],[6,4],[5,6]]</span></span><br></pre></td></tr></table></figure>
+<h3 id="转置"><a href="#转置" class="headerlink" title="转置"></a>转置</h3><p>ndarray 的转置是复制操作，不是引用操作。</p>
+<p>转置的规则是行列置换，学过线性代数都懂。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">print(np.arange(<span class="number">1</span>, <span class="number">10</span>, <span class="number">2</span>))   <span class="comment"># 等差数列，差为 2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成一个序号数组，再把一维拆为二维：3 x 3</span></span><br><span class="line">k = np.arange(<span class="number">9</span>).reshape(<span class="number">3</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">    [0 1 2]</span></span><br><span class="line"><span class="string">    [3 4 5]</span></span><br><span class="line"><span class="string">    [6 7 8]</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line">print(k)                <span class="comment"># 正常</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">    [0 3 6]</span></span><br><span class="line"><span class="string">    [1 4 7]</span></span><br><span class="line"><span class="string">    [2 5 8]</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line">print(k.T)              <span class="comment"># 转置 k[x][y] = k[y][x]</span></span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">[5   14  23]</span></span><br><span class="line"><span class="string">[14  50  86]</span></span><br><span class="line"><span class="string">[23  86 149]</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line">print(np.dot(k, k.T))   <span class="comment"># 点积（矩阵相乘）</span></span><br></pre></td></tr></table></figure>
+<h3 id="随机数"><a href="#随机数" class="headerlink" title="随机数"></a>随机数</h3><p>Numpy 里对随机数的支持简直就是佩服。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">print(np.random.rand())             <span class="comment"># 浮点数随机数</span></span><br><span class="line">print(np.random.rand(<span class="number">2</span>, <span class="number">3</span>))         <span class="comment"># 生成一个随机数矩阵 2 x 3</span></span><br><span class="line">print(np.random.randint(<span class="number">1</span>, <span class="number">100</span>))    <span class="comment"># 整数随机数</span></span><br><span class="line">print(np.random.randn())            <span class="comment"># 正态分布随机数</span></span><br><span class="line">print(np.random.choice([<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>]))  <span class="comment"># 随机数限制在数组里</span></span><br><span class="line">print(np.random.beta(<span class="number">1</span>, <span class="number">10</span>, <span class="number">10</span>,))   <span class="comment"># beta 分布随机数 a = 1, b = 10, size = 10</span></span><br></pre></td></tr></table></figure>
+<h2 id="数据可视化：Matplotlib"><a href="#数据可视化：Matplotlib" class="headerlink" title="数据可视化：Matplotlib"></a>数据可视化：Matplotlib</h2><p><code>Matplotlib</code> 是一个 Python 的数据可视化库，它是基于 Numpy 而实现的。Matplotlib 可以画出很简单的图，比如线性图，条形图，饼图，也可以画出很复杂的图，比如多维图。</p>
+<p><img src="/assets/image/2018/2/20180212104835.jpg" alt></p>
+<h3 id="画一个线性图"><a href="#画一个线性图" class="headerlink" title="画一个线性图"></a>画一个线性图</h3><p>对于一个数学函数来说，它的组成成分是<strong>自变量</strong>与<strong>因变量</strong>，例如：y = 2x + 1。这里 x 就是自变量，而 y 就是因变量。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自变量</span></span><br><span class="line">x = np.arange(<span class="number">0</span>, <span class="number">5</span>, <span class="number">0.1</span>)</span><br><span class="line"><span class="comment"># 因变量</span></span><br><span class="line">y1 = <span class="number">2</span> * x + <span class="number">1</span></span><br><span class="line">y2 = <span class="number">2</span> * x - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">plt.plot(x, y1, <span class="string">'--'</span>, color=<span class="string">"#ff4455"</span>)</span><br><span class="line">plt.plot(x, y2,       color=<span class="string">"#3399ff"</span>)</span><br><span class="line">plt.xlabel(<span class="string">'x'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'y'</span>)</span><br><span class="line">plt.title(<span class="string">'两条线'</span>, color=<span class="string">'#ff4455'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>这样就可以画出两条非常简单的线性图了。实际上线性也好不线性也好只要设定好自变量与因变量，Matplotlib 就能自动帮你画出对应的图像。</p>
+<p><img src="/assets/image/2018/2/20180212104150.png" alt></p>
+<p>加一条竖线：</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">plt.plot([<span class="number">1</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">3</span>], color=<span class="string">"#777777"</span>)</span><br></pre></td></tr></table></figure>
+<p>在 plot 中有一个参数 <code>linestyle</code> 或 <code>marker</code> 是用来指定线条的样式的。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">标记</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">标记</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>o</code></td>
+<td style="text-align:left">圆圈</td>
+<td style="text-align:left"><code>.</code></td>
+<td style="text-align:left">点</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>D</code></td>
+<td style="text-align:left">菱形</td>
+<td style="text-align:left"><code>s</code></td>
+<td style="text-align:left">正方形</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>h</code></td>
+<td style="text-align:left">六边形1</td>
+<td style="text-align:left"><code>*</code></td>
+<td style="text-align:left">星号</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>H</code></td>
+<td style="text-align:left">六边形2</td>
+<td style="text-align:left"><code>d</code></td>
+<td style="text-align:left">小菱形</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>_</code></td>
+<td style="text-align:left">水平线</td>
+<td style="text-align:left"><code>v</code></td>
+<td style="text-align:left">一角朝下的三角形</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>8</code></td>
+<td style="text-align:left">八边形</td>
+<td style="text-align:left"><code>‘</code></td>
+<td style="text-align:left">一角朝左的三角形</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>p</code></td>
+<td style="text-align:left">五边形</td>
+<td style="text-align:left"><code>&gt;</code></td>
+<td style="text-align:left">一角朝右的三角形</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>,</code></td>
+<td style="text-align:left">像素</td>
+<td style="text-align:left"><code>^</code></td>
+<td style="text-align:left">一角朝上的三角形</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>+</code></td>
+<td style="text-align:left">加号</td>
+<td style="text-align:left"><code>&#39;</code></td>
+<td style="text-align:left">竖线</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>None</code></td>
+<td style="text-align:left">无</td>
+<td style="text-align:left"><code>x</code></td>
+<td style="text-align:left">X</td>
+</tr>
+</tbody>
+</table>
+<h3 id="坐标轴范围"><a href="#坐标轴范围" class="headerlink" title="坐标轴范围"></a>坐标轴范围</h3><p>设置坐标轴范围使用 xlim 和 ylim。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ...</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pylab <span class="keyword">as</span> lab</span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line">lab.xlim(<span class="number">-5</span>, <span class="number">10</span>)    <span class="comment"># 设置 x 轴范围</span></span><br><span class="line">lab.ylim(<span class="number">-5</span>, <span class="number">10</span>)    <span class="comment"># 设置 y 轴范围</span></span><br><span class="line"></span><br><span class="line">plt.plot(x, y1, <span class="string">'--'</span>, color=<span class="string">"#ff4455"</span>)</span><br><span class="line">plt.plot(x, y2,       color=<span class="string">"#33aaff"</span>)</span><br><span class="line"><span class="comment"># ...</span></span><br></pre></td></tr></table></figure>
+<p><img src="/assets/image/2018/2/20180212110447.png" alt></p>
+<h3 id="区域"><a href="#区域" class="headerlink" title="区域"></a>区域</h3><p>使用 plt.axes() 定义区域，它的参数是 axes(xmin, xmax, ymin, ymax)</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">x = np.arange(<span class="number">0</span>, <span class="number">5</span>, <span class="number">0.1</span>)</span><br><span class="line">y1 = <span class="number">2</span> * x + <span class="number">1</span></span><br><span class="line">y2 = <span class="number">2</span> * x - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">plt.plot(x, y1, <span class="string">'--'</span>, color=<span class="string">"#ff4455"</span>)</span><br><span class="line">plt.plot(x, y2,       color=<span class="string">"#3399ff"</span>)</span><br><span class="line">plt.axis([<span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">4</span>])      <span class="comment"># 规定区域 x = [0, 2] y = [0, 4]</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/assets/image/2018/2/20180212153211.png" alt></p>
+<h3 id="子图与多图"><a href="#子图与多图" class="headerlink" title="子图与多图"></a>子图与多图</h3><p>在 plot 之前添加 subplot 就可以画子图了。具体为什么 subplot 的参数一个号码，表示的图形的类型。默认是 111。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ...</span></span><br><span class="line">plt.subplot(<span class="number">211</span>)</span><br><span class="line">plt.plot(x, y1, <span class="string">'--'</span>, color=<span class="string">"#ff4455"</span>)</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">212</span>)</span><br><span class="line">plt.plot(x, y2,       color=<span class="string">"#33aaff"</span>)</span><br><span class="line"><span class="comment"># ...</span></span><br></pre></td></tr></table></figure>
+<p><img src="/assets/image/2018/2/20180212111950.png" alt></p>
+<p>如果是多个图，需要配合 <code>figure</code>。每调用一次，就会切换到当前的图号上下文。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ...</span></span><br><span class="line">plt.figure(<span class="number">1</span>)           <span class="comment"># 图 1</span></span><br><span class="line">plt.subplot(<span class="number">211</span>)        <span class="comment"># 图 1 的子图</span></span><br><span class="line">plt.plot(x, y1, <span class="string">'--'</span>, color=<span class="string">"#ff4455"</span>)</span><br><span class="line">plt.subplot(<span class="number">212</span>)</span><br><span class="line">plt.plot(x, y2,       color=<span class="string">"#33aaff"</span>)</span><br><span class="line"></span><br><span class="line">plt.figure(<span class="number">2</span>)           <span class="comment"># 图 2</span></span><br><span class="line">plt.plot(x, <span class="number">2</span> * x)</span><br><span class="line">plt.title(<span class="string">'图 2'</span>)</span><br><span class="line"></span><br><span class="line">plt.figure(<span class="number">1</span>)           <span class="comment"># 切换到图 1</span></span><br><span class="line">plt.title(<span class="string">'图 1'</span>)</span><br><span class="line"><span class="comment"># ...</span></span><br></pre></td></tr></table></figure>
+<p>运行之后，就可以看到有两个窗体：figure 1 和 figure 2。</p>
+<h3 id="文字说明"><a href="#文字说明" class="headerlink" title="文字说明"></a>文字说明</h3><p>所有可以用文字描述的地方都可以自定义文字说明。</p>
+<ul>
+<li><code>text()</code> 可以在图中的任意位置添加文字，并支持 LaTex 语法。</li>
+<li><code>xlable(), ylable()</code> 用于添加 x 轴和 y 轴标签。</li>
+<li><code>title()</code> 用于添加图的题目。</li>
+<li><code>annotate()</code> 点注释，可对某个坐标点进行注释。<a href="https://matplotlib.org/users/annotations_intro.html" target="_blank" rel="noopener">doc</a></li>
+<li><code>legend()</code> 添加图例。</li>
+<li><code>xticks(), yticks()</code> 用于把序号替换为文字表示。参数为 xticks(indexs, texts)</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">x = np.arange(<span class="number">0.0</span>, <span class="number">1.5</span>, <span class="number">0.01</span>)</span><br><span class="line">y1 = np.cos(<span class="number">2</span> * np.pi * x)       <span class="comment"># cos(2πx)</span></span><br><span class="line">y2 = np.sin(<span class="number">2</span> * np.pi * x)       <span class="comment"># sin(2πx)</span></span><br><span class="line"></span><br><span class="line">plt.plot(x, y1, color=<span class="string">"#ff4455"</span>, label=<span class="string">'cos(2πx)'</span>)</span><br><span class="line">plt.annotate(</span><br><span class="line">    <span class="string">'最大值'</span>,</span><br><span class="line">    xy=(<span class="number">1</span>, <span class="number">1</span>),                  <span class="comment"># 坐标</span></span><br><span class="line">    xytext=(<span class="number">1</span>, <span class="number">1.35</span>),           <span class="comment"># 文本位置</span></span><br><span class="line">    arrowprops=&#123;</span><br><span class="line">        <span class="string">'arrowstyle'</span>:<span class="string">"-&gt;"</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">plt.plot(x, y2, color=<span class="string">"#33aaff"</span>, label=<span class="string">'sin(2πx)'</span>)</span><br><span class="line">plt.annotate(</span><br><span class="line">    <span class="string">'最小值'</span>,</span><br><span class="line">    xy=(<span class="number">0.5</span>, <span class="number">-1</span>),               <span class="comment"># 坐标</span></span><br><span class="line">    xytext=(<span class="number">0.35</span>, <span class="number">-1.35</span>),       <span class="comment"># 文本位置</span></span><br><span class="line">    arrowprops=&#123;</span><br><span class="line">        <span class="string">'arrowstyle'</span>:<span class="string">"-&gt;"</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">plt.legend(loc=<span class="string">"upper left"</span>)</span><br><span class="line">plt.ylim(<span class="number">-2</span>, <span class="number">2</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/assets/image/2018/2/20180212120138.png" alt></p>
+<h3 id="基本图形"><a href="#基本图形" class="headerlink" title="基本图形"></a>基本图形</h3><p>基本图形包括了折线图，条形图，饼图和其他。</p>
+<h4 id="折线图"><a href="#折线图" class="headerlink" title="折线图"></a>折线图</h4><p>折线图使用的是 <code>plt.plot</code> 这个 api。它和函数图差不多，只不过函数图大多都是连续线性的，而折线图可能是不连续，非线续的。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">M = <span class="number">4</span></span><br><span class="line">x = np.arange(M)</span><br><span class="line">y1 = np.random.rand(M)</span><br><span class="line">y2 = np.random.rand(M)</span><br><span class="line"></span><br><span class="line">plt.plot(x, y1, color=<span class="string">'#ff4455'</span>, label=<span class="string">'盈利'</span>)</span><br><span class="line">plt.plot(x, y2, color=<span class="string">'#33aaff'</span>, label=<span class="string">'亏损'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 点注释</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> x:</span><br><span class="line">    ys = [y1, y2]</span><br><span class="line">    cs = [<span class="string">'#ff4455'</span>, <span class="string">'#33aaff'</span>]</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(len(ys)):</span><br><span class="line">        _x = i</span><br><span class="line">        _y = ys[j][i]</span><br><span class="line">        plt.plot([_x], [_y], <span class="string">'o'</span>, color=cs[j], alpha=<span class="number">0.65</span>)</span><br><span class="line">        plt.annotate(</span><br><span class="line">            round(_y, <span class="number">2</span>),</span><br><span class="line">            xy=(_x, _y),                          <span class="comment"># 坐标</span></span><br><span class="line">            xytext=(_x - <span class="number">0.08</span>, _y + <span class="number">0.015</span>),       <span class="comment"># 文本位置</span></span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">plt.xticks(x, [<span class="string">'第一季度'</span>, <span class="string">'第二季度'</span>, <span class="string">'第三季度'</span>, <span class="string">'第四季度'</span>])</span><br><span class="line">plt.legend(loc=<span class="string">"upper left"</span>)</span><br><span class="line">plt.ylim(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/assets/image/2018/2/20180212142027.png" alt></p>
+<h4 id="条形图"><a href="#条形图" class="headerlink" title="条形图"></a>条形图</h4><p>条形图使用的是 <code>plt.bar</code> 这个 api。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">x = np.arange(<span class="number">4</span>)</span><br><span class="line">y1 = np.random.randint(<span class="number">0</span>, <span class="number">50</span>, <span class="number">4</span>)</span><br><span class="line">y2 = np.random.randint(<span class="number">0</span>, <span class="number">60</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">plt.bar(x - <span class="number">0.21</span>, y1, width=<span class="number">0.2</span>, color=<span class="string">'#ff4455'</span>, label=<span class="string">'盈利'</span>)</span><br><span class="line">plt.bar(x + <span class="number">0.00</span>, y2, width=<span class="number">0.2</span>, color=<span class="string">'#33aaff'</span>, label=<span class="string">'亏损'</span>)</span><br><span class="line"></span><br><span class="line">plt.bar(x + <span class="number">0.21</span>, y1, width=<span class="number">0.2</span>, color=<span class="string">'black'</span>, bottom=<span class="number">0</span>, alpha=<span class="number">0.45</span>)</span><br><span class="line">plt.bar(x + <span class="number">0.21</span>, y2, width=<span class="number">0.2</span>, color=<span class="string">'black'</span>, bottom=y1, alpha=<span class="number">0.25</span>)</span><br><span class="line"></span><br><span class="line">plt.xticks([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="string">'第一季度'</span>, <span class="string">'第二季度'</span>, <span class="string">'第三季度'</span>, <span class="string">'第四季度'</span>])</span><br><span class="line">plt.legend(loc=<span class="string">"upper left"</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/assets/image/2018/2/20180212133648.png" alt></p>
+<p>条形图有横向与纵向之分，来看看横向条形图（使用 plt.barh）。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">x = np.arange(<span class="number">4</span>)</span><br><span class="line">y1 = np.random.randint(<span class="number">0</span>, <span class="number">50</span>, <span class="number">4</span>)</span><br><span class="line">y2 = np.random.randint(<span class="number">0</span>, <span class="number">60</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">plt.barh(x - <span class="number">0.21</span>, y1, height=<span class="number">0.2</span>, color=<span class="string">'#ff4455'</span>, label=<span class="string">'盈利'</span>)</span><br><span class="line">plt.barh(x + <span class="number">0.00</span>, y2, height=<span class="number">0.2</span>, color=<span class="string">'#33aaff'</span>, label=<span class="string">'亏损'</span>)</span><br><span class="line"></span><br><span class="line">plt.barh(x + <span class="number">0.21</span>, y1, height=<span class="number">0.2</span>, color=<span class="string">'black'</span>, left=<span class="number">0</span>, alpha=<span class="number">0.45</span>)</span><br><span class="line">plt.barh(x + <span class="number">0.21</span>, y2, height=<span class="number">0.2</span>, color=<span class="string">'black'</span>, left=y1, alpha=<span class="number">0.25</span>)</span><br><span class="line"></span><br><span class="line">plt.yticks([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="string">'第一季度'</span>, <span class="string">'第二季度'</span>, <span class="string">'第三季度'</span>, <span class="string">'第四季度'</span>])</span><br><span class="line">plt.legend(loc=<span class="string">"upper right"</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/assets/image/2018/2/20180212160419.png" alt></p>
+<h4 id="饼图"><a href="#饼图" class="headerlink" title="饼图"></a>饼图</h4><p>条形图使用的是 <code>plt.pie</code> 这个 api。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">x = [<span class="number">15</span>, <span class="number">30</span>, <span class="number">45</span>, <span class="number">10</span>]</span><br><span class="line">y = [<span class="number">0</span>, <span class="number">0.05</span>, <span class="number">0.08</span>, <span class="number">0</span>] <span class="comment"># &lt;- 饼的偏移量</span></span><br><span class="line">labels = [<span class="string">'第一季度'</span>, <span class="string">'第二季度'</span>, <span class="string">'第三季度'</span>, <span class="string">'第四季度'</span>]</span><br><span class="line">colors = [<span class="string">'#33aaff'</span>, <span class="string">'#ff4455'</span>, <span class="string">'#33bb44'</span>, <span class="string">'#ff9900'</span>]</span><br><span class="line">plt.axes(aspect=<span class="number">1</span>)</span><br><span class="line">plt.pie(x, y, labels, colors, autopct=<span class="string">'%.0f%%'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/assets/image/2018/2/20180212161954.png" alt></p>
+<h4 id="直方图"><a href="#直方图" class="headerlink" title="直方图"></a>直方图</h4><p>条形图使用的是 <code>plt.hist</code> 这个 api。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">x = <span class="number">100</span> + <span class="number">20</span> * np.random.randn(<span class="number">20000</span>)</span><br><span class="line">plt.hist(x, bins=<span class="number">100</span>, color=<span class="string">'#33aaff'</span>, normed=<span class="literal">False</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/assets/image/2018/2/20180212162518.png" alt></p>
+<h4 id="散点图"><a href="#散点图" class="headerlink" title="散点图"></a>散点图</h4><p>散点图使用的是 <code>plt.scatter</code> 这个 api。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">x1 = np.random.rand(<span class="number">2</span>, <span class="number">25</span>)</span><br><span class="line">x2 = np.random.rand(<span class="number">2</span>, <span class="number">25</span>)</span><br><span class="line">x3 = np.random.rand(<span class="number">2</span>, <span class="number">25</span>)</span><br><span class="line">x4 = np.random.rand(<span class="number">2</span>, <span class="number">25</span>)</span><br><span class="line"></span><br><span class="line">plt.scatter(x1[<span class="number">0</span>], x1[<span class="number">1</span>], marker=<span class="string">'x'</span>, color=<span class="string">'#33aaff'</span>, label=<span class="string">'第一季度'</span>)</span><br><span class="line">plt.scatter(x2[<span class="number">0</span>], x2[<span class="number">1</span>], marker=<span class="string">'+'</span>, color=<span class="string">'#ff4455'</span>, label=<span class="string">'第二季度'</span>)</span><br><span class="line">plt.scatter(x3[<span class="number">0</span>], x3[<span class="number">1</span>], marker=<span class="string">'.'</span>, color=<span class="string">'#33bb44'</span>, label=<span class="string">'第三季度'</span>)</span><br><span class="line">plt.scatter(x4[<span class="number">0</span>], x4[<span class="number">1</span>], marker=<span class="string">'*'</span>, color=<span class="string">'#ff9900'</span>, label=<span class="string">'第四季度'</span>)</span><br><span class="line">plt.legend(loc = <span class="string">'upper right'</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/assets/image/2018/2/20180212171227.png" alt></p>
+<h2 id="础数据分析：Pandas"><a href="#础数据分析：Pandas" class="headerlink" title="础数据分析：Pandas"></a>础数据分析：Pandas</h2><p>Pandas 是一个提供快速，灵活和表达性数据结构的 Python 包，旨在使<code>关系</code>或<code>标记</code>数据变得简单直观。<br>要记住在 Pandas 里只有两种数据结构：<code>Series</code>（一维） 和 <code>DataFrame</code>（二维），其他都是 Python 自带的数据结构和 Numpy 的数据结构。</p>
+<h3 id="Series"><a href="#Series" class="headerlink" title="Series"></a>Series</h3><p>Series 就如同列表一样，一系列数据，每个数据对应一个索引值。当你输出 Series 的数据后，会发现它是竖着放的，没错它的数据就是竖着放的，甚至可以认为 Series 就是<code>竖起来</code>的 list。</p>
+<p>Series 的元素有三个部分组成：index、vaues、key。</p>
+<p><img src="/assets/image/2018/2/20180220122643.png" alt></p>
+<h4 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h4><p>Series 的创建方式有非常多种，可以使用一个列表创建，默认索引是数组的下标，也可以指定索引，当然还可以使用对象的方式来创建。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> Series</span><br><span class="line"></span><br><span class="line">s = Series([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">s = Series([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>])</span><br><span class="line">s = Series(&#123; <span class="string">'a'</span>: <span class="number">1</span>, <span class="string">'b'</span>: <span class="number">2</span>, <span class="string">'c'</span>: <span class="number">3</span> &#125;)</span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">a  1</span></span><br><span class="line"><span class="string">b  2</span></span><br><span class="line"><span class="string">c  3</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line">print(s)</span><br><span class="line">print(s[<span class="number">0</span>])     <span class="comment"># 1</span></span><br><span class="line">print(s[<span class="string">'a'</span>])   <span class="comment"># 1</span></span><br><span class="line">print(s.values)</span><br><span class="line">print(s.keys)</span><br><span class="line">print(s.index)</span><br></pre></td></tr></table></figure>
+<p>访问 Series 的数据可以根据索引也可以根据 key 来访问。</p>
+<p>当使用对象创建时，默认会自动使用对象的 key 作为索引，如果自己手动设置索引，而索引的名称对不上就会值被设置为 <code>NaN</code>，因此可以利用这个特性来检查数据的 key。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">s = Series(&#123; <span class="string">'a'</span>: <span class="number">1</span>, <span class="string">'b'</span>: <span class="number">2</span>, <span class="string">'c'</span>: <span class="number">3</span> &#125;, index=[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'d'</span>])</span><br><span class="line">print(s.isnull)</span><br><span class="line">s.index = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]   <span class="comment"># 重新定义</span></span><br></pre></td></tr></table></figure>
+<p>Series 有几个属性可以查看数据，它们都支持 get、set 操作：</p>
+<ul>
+<li><code>s.values</code> 查看所有的 value。</li>
+<li><code>s.keys</code> 查看所有的 key。</li>
+<li><code>s.index</code> 查看所有的 index。</li>
+<li><code>s.dtypes</code> 查看所有的数据类型。</li>
+<li><code>s[i]</code> 通过索引获取值。</li>
+<li><code>s[key]</code> 通过键获取值。</li>
+</ul>
+<h4 id="矢量运算"><a href="#矢量运算" class="headerlink" title="矢量运算"></a>矢量运算</h4><p>因为 Series 是基于 Numpy 实现的，所以对于数组数据支持矢量运算。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">s1 = Series([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">s2 = Series([<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>])</span><br><span class="line"></span><br><span class="line">print(s1 + s2)</span><br><span class="line">print(s1 - s2)</span><br><span class="line">print(s1 * s2)</span><br><span class="line">print(s1 / s2)</span><br><span class="line"></span><br><span class="line">print(s1[s1 &gt; <span class="number">2</span>])</span><br><span class="line">print(s2[s2 == <span class="number">5</span>])</span><br></pre></td></tr></table></figure>
+<h3 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h3><p>DataFrame 是一种二维的数据结构，非常接近于电子表格或者类似 mysql 数据库的形式。它的竖行称之为 columns，横行跟前面的 Series 一样，称之为 index，也就是说可以通过 columns 和 index 来确定一个主句的位置。</p>
+<p><img src="/assets/image/2018/2/20180220122654.png" alt></p>
+<h4 id="创建-1"><a href="#创建-1" class="headerlink" title="创建"></a>创建</h4><p>对于 DataFrame 的创建有几种方式，主要是 key 和 index 需要对得上。对象的 key 要看成列数据，实际上就是列方式存储。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> Series, DataFrame</span><br><span class="line"></span><br><span class="line">d = DataFrame(&#123;</span><br><span class="line">    <span class="string">'name'</span>: [<span class="string">'小明'</span>, <span class="string">'小美'</span>, <span class="string">'小东'</span>],   <span class="comment"># 一列的数据</span></span><br><span class="line">    <span class="string">'age'</span>: [<span class="number">20</span>, <span class="number">19</span>, <span class="number">21</span>],</span><br><span class="line">    <span class="string">'height'</span>: [<span class="number">182</span>, <span class="number">168</span>, <span class="number">176</span>],</span><br><span class="line">    <span class="string">'weight'</span>: [<span class="number">61</span>, <span class="number">53</span>, <span class="number">59</span>],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">   age  height   name  weight</span></span><br><span class="line"><span class="string">0   20     182   小明      61</span></span><br><span class="line"><span class="string">1   19     168   小美      53</span></span><br><span class="line"><span class="string">2   21     176   小东      59</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line">print(d)</span><br></pre></td></tr></table></figure>
+<p>默认情况下使用序号作为索引，这里使用 name 作为索引。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> Series, DataFrame</span><br><span class="line"></span><br><span class="line">d = DataFrame(&#123;</span><br><span class="line">    <span class="string">'age'</span>: &#123;                            <span class="comment"># 一列的数据</span></span><br><span class="line">        <span class="string">'小明'</span>: <span class="number">20</span>,</span><br><span class="line">        <span class="string">'小美'</span>: <span class="number">19</span>,</span><br><span class="line">        <span class="string">'小东'</span>: <span class="number">21</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'height'</span>: &#123;</span><br><span class="line">        <span class="string">'小明'</span>: <span class="number">182</span>,</span><br><span class="line">        <span class="string">'小美'</span>: <span class="number">168</span>,</span><br><span class="line">        <span class="string">'小东'</span>: <span class="number">176</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'weight'</span>: &#123;</span><br><span class="line">        <span class="string">'小明'</span>: <span class="number">61</span>,</span><br><span class="line">        <span class="string">'小美'</span>: <span class="number">53</span>,</span><br><span class="line">        <span class="string">'小东'</span>: <span class="number">59</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">     age   height  weight</span></span><br><span class="line"><span class="string">小东   21     176      59</span></span><br><span class="line"><span class="string">小明   20     182      61</span></span><br><span class="line"><span class="string">小美   19     168      53</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line">print(d)</span><br></pre></td></tr></table></figure>
+<p>同样 DataFrame 也支持 index 属性，类似的规则和 Series 差不多。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">print(DataFrame(&#123;</span><br><span class="line">    <span class="string">'age'</span>: &#123;                       <span class="comment"># 一列的数据</span></span><br><span class="line">        <span class="string">'小明'</span>: <span class="number">20</span>,</span><br><span class="line">        <span class="string">'小美'</span>: <span class="number">19</span>,</span><br><span class="line">        <span class="string">'小东'</span>: <span class="number">21</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'height'</span>: &#123;</span><br><span class="line">        <span class="string">'小明'</span>: <span class="number">182</span>,</span><br><span class="line">        <span class="string">'小美'</span>: <span class="number">168</span>,                <span class="comment"># 小东为 NaN</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'weight'</span>: &#123;</span><br><span class="line">        <span class="string">'小明'</span>: <span class="number">61</span>,</span><br><span class="line">        <span class="string">'小美'</span>: <span class="number">53</span>,</span><br><span class="line">        <span class="string">'小东'</span>: <span class="number">59</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, index=[<span class="string">'小明'</span>, <span class="string">'小东'</span>]))         <span class="comment"># 小美将被忽略</span></span><br></pre></td></tr></table></figure>
+<p>DataFrame 有几个属性可以查看数据，它们都支持 get、set 操作：</p>
+<ul>
+<li><code>d.columns</code> 获取所有 columns。</li>
+<li><code>d.keys</code> 获取所有 key。</li>
+<li><code>d.index</code> 获取所有 index。</li>
+<li><code>d.values</code> 获取所有 values。</li>
+<li><code>d.dtypes</code> 获取所有数据类型。</li>
+<li><code>d[key]</code> 根据 key 获取值。</li>
+<li><code>d[i:j]</code> 根据数组切片，切为几行。</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">     age   height  weight</span></span><br><span class="line"><span class="string">小东   21     176      59</span></span><br><span class="line"><span class="string">小明   20     182      61</span></span><br><span class="line"><span class="string">小美   19     168      53</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line">print(d.columns)</span><br><span class="line">print(d.values)</span><br><span class="line">print(d.keys)</span><br><span class="line">print(d.index)</span><br><span class="line"></span><br><span class="line">print(d[<span class="string">'age'</span>])         <span class="comment"># 结构就是 Series</span></span><br><span class="line">print(d[<span class="string">'age'</span>].index)   <span class="comment"># ['小东', '小明', '小美']</span></span><br><span class="line">print(d[<span class="string">'age'</span>].values)  <span class="comment"># [21 20 19]</span></span><br><span class="line">print(d[<span class="string">'age'</span>][<span class="number">0</span>])      <span class="comment"># 21</span></span><br><span class="line">print(d[<span class="string">'age'</span>][<span class="string">'小明'</span>]) <span class="comment"># 21</span></span><br><span class="line"></span><br><span class="line">print(d[<span class="string">'小东'</span>])        <span class="comment"># xxx 报错，不可以这样</span></span><br><span class="line">print(d[<span class="number">0</span>])             <span class="comment"># xxx 报错，不可以这样</span></span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">     age   height  weight</span></span><br><span class="line"><span class="string">小东   21     176      59</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line">print(d[<span class="number">0</span>:<span class="number">1</span>])           <span class="comment"># 但是可以用切片，切片之后不是数组而是 DataFrame 数据</span></span><br><span class="line">print(d[<span class="number">0</span>:<span class="number">1</span>].values)    <span class="comment"># [21, 176, 59]</span></span><br></pre></td></tr></table></figure>
+<p>实际上 DataFrame 是由 Series 组成的，因此可以把一个 Series 赋值给 DataFrame 的某列（注意索引要对得上）</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">d = DataFrame(&#123;</span><br><span class="line">    <span class="string">'age'</span>: &#123;</span><br><span class="line">        <span class="string">'小明'</span>: <span class="number">20</span>,</span><br><span class="line">        <span class="string">'小美'</span>: <span class="number">19</span>,</span><br><span class="line">        <span class="string">'小东'</span>: <span class="number">21</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'height'</span>: &#123;</span><br><span class="line">        <span class="string">'小明'</span>: <span class="number">182</span>,</span><br><span class="line">        <span class="string">'小美'</span>: <span class="number">168</span>,</span><br><span class="line">        <span class="string">'小东'</span>: <span class="number">176</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'weight'</span>: Series(&#123; <span class="string">'小明'</span>: <span class="number">61</span>, <span class="string">'小美'</span>: <span class="number">53</span>, <span class="string">'小东'</span>: <span class="number">59</span> &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">     age   height  weight</span></span><br><span class="line"><span class="string">小东   21     176      59</span></span><br><span class="line"><span class="string">小明   20     182      61</span></span><br><span class="line"><span class="string">小美   19     168      53</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line">print(d)</span><br></pre></td></tr></table></figure>
+<p>永远都要记住一切对不上索引的数据都是会自动设置为 <code>NaN</code>，所以索引非常重要。</p>
+<p>还可以这样创建数据：</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">pd.DataFrame(&#123;</span><br><span class="line">    <span class="string">'A'</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">'B'</span>: pd.Timestamp(<span class="string">'20130102'</span>),</span><br><span class="line">    <span class="string">'C'</span>: pd.Series(np.random.rand(<span class="number">4</span>), index=list(range(<span class="number">4</span>)), dtype=<span class="string">'float32'</span>),</span><br><span class="line">    <span class="string">'D'</span>: np.array([<span class="number">3</span>] * <span class="number">4</span>, dtype=<span class="string">'int32'</span>),</span><br><span class="line">    <span class="string">'E'</span>: pd.Categorical([<span class="string">'test'</span>, <span class="string">'train'</span>, <span class="string">'test'</span>, <span class="string">'train'</span>]),</span><br><span class="line">    <span class="string">'F'</span>: <span class="string">'foo'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>因为 Pandas 是基于 Numpy 创建的，它可以接纳 Numpy 的数据格式和自己的数据格式。</p>
+<h3 id="数据读取"><a href="#数据读取" class="headerlink" title="数据读取"></a>数据读取</h3><p><code>Pandas</code> 提供了许多的数据读取 api，包括 CSV，JSON，Excel 等数据格式，从智能提示就可以知道了。</p>
+<p><img src="/assets/image/2018/2/20180213105712.png" alt></p>
+<h4 id="CSV"><a href="#CSV" class="headerlink" title="CSV"></a>CSV</h4><p>CSV 是一种通用的、相对简单的文件格式，在表格类型的数据中用途很广泛。<br>它的格式是，一行表示一个 row 数据，每行之间用 <code>,</code> 分割。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">name,physics,python</span><br><span class="line">Google,100,100</span><br></pre></td></tr></table></figure>
+<p><img src="/assets/image/2018/2/20180213105038.png" alt></p>
+<p>这种格式非常好读取，如果是用 nodejs，可以瞬间把它格式化为二维数组。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line">fs.readFild(<span class="string">'./test.csv'</span>, data =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> list = data.split(<span class="string">'\n'</span>).map(<span class="function"><span class="params">i</span> =&gt;</span> i.split(<span class="string">','</span>));</span><br><span class="line">    <span class="built_in">console</span>.log(list);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在 Python 里，有专用的库去读取 CSV 文件，当然 Pandas 也提供 api。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">d = pd.read_csv(<span class="string">"./d.csv"</span>, encoding=<span class="string">'utf8'</span>)</span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">       name  physics  python  math  english</span></span><br><span class="line"><span class="string">0    Google      100     100    25       12</span></span><br><span class="line"><span class="string">1  Facebook       45      54    44       88</span></span><br><span class="line"><span class="string">2   Twitter       54      76    13       91</span></span><br><span class="line"><span class="string">3     Yahoo       54     452    26      100</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line">print(d)</span><br></pre></td></tr></table></figure>
+<h4 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h4><p>对 JSON 的支持，可以自己用文件系统 api 先读 json 数据再解析，也可以使用 Pandas 的 api。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">    "name": ["小明", "小美", "小东"],</span></span><br><span class="line"><span class="string">    "age": [20, 19, 21],</span></span><br><span class="line"><span class="string">    "height": [182, 168, 176],</span></span><br><span class="line"><span class="string">    "weight": [61, 53, 59]</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line">d = pd.read_json(<span class="string">'./data.json'</span>, encoding=<span class="string">'utf8'</span>);</span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">   age  height   name  weight</span></span><br><span class="line"><span class="string">0   20     182   小明      61</span></span><br><span class="line"><span class="string">1   19     168   小美      53</span></span><br><span class="line"><span class="string">2   21     176   小东      59</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line">print(d)</span><br></pre></td></tr></table></figure>
+<h4 id="Excel"><a href="#Excel" class="headerlink" title="Excel"></a>Excel</h4><p>读取 Excel　数据需要安装一个模块：<code>xlrd</code>，不然会报错。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install xlrd</span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">d = pd.read_excel(<span class="string">'./data.xls'</span>, encoding=<span class="string">'utf8'</span>);</span><br><span class="line">print(d)</span><br></pre></td></tr></table></figure>
+<h3 id="属性与方法"><a href="#属性与方法" class="headerlink" title="属性与方法"></a>属性与方法</h3><p>有一个快捷的方式可以知道对象的属性与方法。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">showKeys</span><span class="params">(obj)</span>:</span></span><br><span class="line">    func = []</span><br><span class="line">    props = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> dir(obj):</span><br><span class="line">        <span class="keyword">if</span> str(i)[<span class="number">0</span>] != <span class="string">'_'</span>:</span><br><span class="line">            <span class="keyword">if</span> hasattr(eval(<span class="string">'obj.'</span> + i), <span class="string">'__call__'</span>):</span><br><span class="line">                func.append(i)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                props.append(i)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> (<span class="string">'函数：'</span>, func)</span><br><span class="line">    <span class="keyword">print</span> (<span class="string">'属性：'</span>, props)</span><br><span class="line"></span><br><span class="line">s = Series([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">showKeys(s)</span><br></pre></td></tr></table></figure>
+<p>常用的 api：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">name</th>
+<th style="text-align:left">explain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">d.head(2)</td>
+<td style="text-align:left">获取头两行，等效于 d[0:2]。</td>
+</tr>
+<tr>
+<td style="text-align:left">d.tail(2)</td>
+<td style="text-align:left">获取尾两行。</td>
+</tr>
+<tr>
+<td style="text-align:left">d.describe()</td>
+<td style="text-align:left">显示数据的快速统计摘要。</td>
+</tr>
+<tr>
+<td style="text-align:left">d.T</td>
+<td style="text-align:left">转置数据（矩阵转置）。</td>
+</tr>
+<tr>
+<td style="text-align:left">d.sort_index(axis=1)</td>
+<td style="text-align:left">索引排序。</td>
+</tr>
+<tr>
+<td style="text-align:left">d.sort_values(by=’age’)</td>
+<td style="text-align:left">列排序。</td>
+</tr>
+<tr>
+<td style="text-align:left">d.loc[‘小明’]</td>
+<td style="text-align:left">根据 index，获取横向数据。</td>
+</tr>
+<tr>
+<td style="text-align:left">d.loc[‘小明’, [‘age’, ‘height’]]</td>
+<td style="text-align:left">指定返回的数据。</td>
+</tr>
+<tr>
+<td style="text-align:left">d.loc[‘小明’, ‘age’]</td>
+<td style="text-align:left">等效于 d[‘age’][‘小明’]。</td>
+</tr>
+<tr>
+<td style="text-align:left">d.iloc[2]</td>
+<td style="text-align:left">获取索引为 2 的行数据。</td>
+</tr>
+<tr>
+<td style="text-align:left">d.iloc[3:5, 0:2]</td>
+<td style="text-align:left">数组切片，获取第 3 - 5 行，第 0 - 2 列数据。</td>
+</tr>
+<tr>
+<td style="text-align:left">pd.isnull(d)</td>
+<td style="text-align:left">返回是否是数据缺失。</td>
+</tr>
+<tr>
+<td style="text-align:left">d.mean()</td>
+<td style="text-align:left">返回一些平均数描述性信息。</td>
+</tr>
+<tr>
+<td style="text-align:left">s1 = s1.append(s2)</td>
+<td style="text-align:left">追加一个 Series 数据。</td>
+</tr>
+<tr>
+<td style="text-align:left">d1 = d1.append(d2)</td>
+<td style="text-align:left">追加一个 DataFrame 数据。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="高级科学计算：Scipy"><a href="#高级科学计算：Scipy" class="headerlink" title="高级科学计算：Scipy"></a>高级科学计算：Scipy</h2><p>Scipy 是一个高级的科学计算库，它是构建在 Numpy 之上的。<br>Scipy 有很多子模块可以应对不同的应用，例如插值运算，优化算法、图像处理、数学统计等。</p>
+<h3 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h3><p>Scipy 里的模块非常多，它包括了：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">模块</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">scipy.cluster</td>
+<td style="text-align:left">矢量量化/Kmeans</td>
+</tr>
+<tr>
+<td style="text-align:left">scipy.constants</td>
+<td style="text-align:left">物理和数学常数</td>
+</tr>
+<tr>
+<td style="text-align:left">scipy.fftpack</td>
+<td style="text-align:left">傅里叶变换</td>
+</tr>
+<tr>
+<td style="text-align:left">scipy.integrate</td>
+<td style="text-align:left">集成例程</td>
+</tr>
+<tr>
+<td style="text-align:left">scipy.interpolate</td>
+<td style="text-align:left">插值</td>
+</tr>
+<tr>
+<td style="text-align:left">scipy.io</td>
+<td style="text-align:left">数据输入和输出</td>
+</tr>
+<tr>
+<td style="text-align:left">scipy.linalg</td>
+<td style="text-align:left">线性代数例程</td>
+</tr>
+<tr>
+<td style="text-align:left">scipy.ndimage</td>
+<td style="text-align:left">n 维图像包</td>
+</tr>
+<tr>
+<td style="text-align:left">scipy.odr</td>
+<td style="text-align:left">正交距离回归</td>
+</tr>
+<tr>
+<td style="text-align:left">scipy.optimize</td>
+<td style="text-align:left">优化与拟合</td>
+</tr>
+<tr>
+<td style="text-align:left">scipy.signal</td>
+<td style="text-align:left">信号处理</td>
+</tr>
+<tr>
+<td style="text-align:left">scipy.sparse</td>
+<td style="text-align:left">稀疏矩阵</td>
+</tr>
+<tr>
+<td style="text-align:left">scipy.spatial</td>
+<td style="text-align:left">空间数据结构和算法</td>
+</tr>
+<tr>
+<td style="text-align:left">scipy.special</td>
+<td style="text-align:left">任何特殊的数学函数</td>
+</tr>
+<tr>
+<td style="text-align:left">scipy.stats</td>
+<td style="text-align:left">统计</td>
+</tr>
+</tbody>
+</table>
+<p>一般来说我们并不需要了解全部的模块，只需要按部就班就可。</p>
+<h3 id="优化和拟合"><a href="#优化和拟合" class="headerlink" title="优化和拟合"></a>优化和拟合</h3><p><code>scipy.optimize</code> 里包含了需要优化与拟合的函数，帮你计算各种复杂的公式。使用它非常简单，只需要把参数放进，之后等待计算结果，期间没有任何烦恼。</p>
+<p>例如，下面有一个一元二次方程，为了找到这个方程的最优解（最小值），我们可以自己去动手解方程组，也可以使用 optimize 模块的函数。</p>
+<p>在这里使用的是一个 <code>BGFS</code> 算法来解题。</p>
+<blockquote>
+<p><a href="https://baike.baidu.com/item/BFGS%E7%AE%97%E6%B3%95/19134399?fr=aladdin" target="_blank" rel="noopener">BFGS</a> 算法（BFGS algorithm），是一种逆秩 2 拟牛顿法。</p>
+</blockquote>
+<p><img src="/assets/image/2018/2/20180214162917.png" alt></p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> optimize</span><br><span class="line"></span><br><span class="line">f = <span class="keyword">lambda</span> x: (x - <span class="number">4</span>) ** <span class="number">2</span> + <span class="number">16</span> * x - <span class="number">2</span></span><br><span class="line">x = np.arange(<span class="number">-10</span>, <span class="number">10</span>, <span class="number">0.1</span>)</span><br><span class="line"></span><br><span class="line">plt.plot(x, f(x), color=<span class="string">"#ff4455"</span>)</span><br><span class="line">plt.ylim(<span class="number">-10</span>, <span class="number">50</span>)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line">fmin = optimize.fmin_bfgs(f, <span class="number">0</span>) <span class="comment"># 从 0 点开始</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">Optimization terminated successfully.</span></span><br><span class="line"><span class="string">         Current function value: -2.000000    # 最小值 f(x)</span></span><br><span class="line"><span class="string">         Iterations: 3</span></span><br><span class="line"><span class="string">         Function evaluations: 12</span></span><br><span class="line"><span class="string">         Gradient evaluations: 4</span></span><br><span class="line"><span class="string">[-4.0000002487074]                            # 最小值的 x</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line">print(fmin)</span><br></pre></td></tr></table></figure>
+<p>最后通过 optimize.fmin_bfgs 这个函数，成功找到了最低点是 <code>（-4, -2）</code>。</p>
+<p>除了使用 fmin_bfgs，还可以使用 optimize.basinhopping 这个函数，同样也可以找到相应的结果。</p>
+<h3 id="统计"><a href="#统计" class="headerlink" title="统计"></a>统计</h3><p><code>scipy.stats</code> 包括了一系列的统计函数。例如我们可以利用 norm.fit 来计算正态分布函数的均值与标准差。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> stats</span><br><span class="line"></span><br><span class="line">a = np.random.normal(size=<span class="number">1000</span>)</span><br><span class="line">loc, std = stats.norm.fit(a)</span><br><span class="line"></span><br><span class="line">print(loc)                              <span class="comment"># 均值</span></span><br><span class="line">print(std)                              <span class="comment"># 方差</span></span><br><span class="line">print(stats.scoreatpercentile(a, <span class="number">50</span>))   <span class="comment"># 中值</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">''</span>)</span><br><span class="line">print(np.mean(a))       <span class="comment"># 均值</span></span><br><span class="line">print(np.std(a))        <span class="comment"># 方差</span></span><br><span class="line">print(np.median(a))     <span class="comment"># 中值</span></span><br></pre></td></tr></table></figure>
+<p>当然有些功能与 Numpy 重复了。</p>
+<p>还可以利用 stats.ttest_ind 做统计测试。</p>
+<blockquote>
+<p>统计测试是决策指标。例如，如果我们有两组观察值，我们假设从高斯过程产生，我们可以使用 T-test 来决定两组观察值是否有明显的不同。</p>
+</blockquote>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> stats</span><br><span class="line"></span><br><span class="line">a = np.random.normal(<span class="number">0</span>, <span class="number">1</span>, size=<span class="number">100</span>)</span><br><span class="line">b = np.random.normal(<span class="number">1</span>, <span class="number">1</span>, size=<span class="number">10</span>)</span><br><span class="line">r = stats.ttest_ind(a, b)</span><br><span class="line"></span><br><span class="line">print(r)</span><br></pre></td></tr></table></figure>
+<p>结果输出包括：</p>
+<ul>
+<li>T 统计值：它是一个数，其符号与两个随机过程之间的差成比例，并且该量值与该差的显着性相关。</li>
+<li>p 值：两个进程的概率相同。如果接近 1，这两个过程几乎肯定是相同的。越接近零，过程具有不同手段的可能性越大。</li>
+</ul>
+<p>这是属于数学体系 - 统计学的知识，就不在这里一一述说。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="http://python.usyiyi.cn/translate/NumPy_v111/reference/index.html" target="_blank" rel="noopener">http://python.usyiyi.cn/translate/NumPy_v111/reference/index.html</a></li>
+<li><a href="https://matplotlib.org/examples/index.html" target="_blank" rel="noopener">https://matplotlib.org/examples/index.html</a></li>
+<li><a href="http://python.usyiyi.cn/translate/Pandas_0j2/index.html" target="_blank" rel="noopener">http://python.usyiyi.cn/translate/Pandas_0j2/index.html</a></li>
+<li><a href="http://python.usyiyi.cn/translate/scipy_lecture_notes/intro/scipy.html" target="_blank" rel="noopener">http://python.usyiyi.cn/translate/scipy_lecture_notes/intro/scipy.html</a></li>
+</ul>
+</section><div class="post-view-tags"><span>学习笔记</span><span>Python</span><span>大数据</span></div><footer><p>最后更新时间：2020-06-16 09:30:35</p><div><div><b>版权声明：</b>大数据与智能计算实验室，未经允许禁止转载！</div><div><b>作者：</b><span>Robot<span class="dot"> · </span> 智能的小编</span></div></div></footer><div class="post-view-author-view"><div class="post-view-author-view-left"><img src="/assets/avatar/a1.jpeg" class="post-view-author-view-avatar" alt></div><div class="post-view-author-view-right"><a target="_blank" class="post-view-author-view-title" href="/author/robot.html"><span>Robot<span class="dot"> · </span> 智能的小编</span></a><div class="post-view-author-view-summary"><div>这位同学很懒，什么都没写。</div></div></div></div></div><footer><div class="post-view-prev"><h3>上一篇文章</h3><h4><a href="/stories/2019-03-24/后端/Git Commit 规范要求/index.html">Git Commit 规范要求</a></h4><div class="post-view-prev-summary">本文是本厂的 Git Commit 提交的注释规范要求，请大家养成良好的习惯，严格的遵守规则，谢谢。 ...</div><div class="post-view-prev-author"><img src="/assets/avatar/a1.jpeg" alt><span>Robot<span class="dot"> · </span> 智能的小编</span></div></div></footer><div class="post-view-toc"><div class="post-view-toc-header"><span>目录</span><i title="收起" class="material-icons">arrow_forward</i></div><div><ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据分析利器：Numpy"><span class="post-toc-number">2.</span> <span class="post-toc-text">数据分析利器：Numpy</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#维数组"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">维数组</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#矢量化运算"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">矢量化运算</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数组索引"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">数组索引</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数组切片"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">数组切片</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#转置"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">转置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#随机数"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">随机数</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据可视化：Matplotlib"><span class="post-toc-number">3.</span> <span class="post-toc-text">数据可视化：Matplotlib</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#画一个线性图"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">画一个线性图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#坐标轴范围"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">坐标轴范围</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#区域"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">区域</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#子图与多图"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">子图与多图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#文字说明"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">文字说明</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基本图形"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">基本图形</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#折线图"><span class="post-toc-number">3.6.1.</span> <span class="post-toc-text">折线图</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#条形图"><span class="post-toc-number">3.6.2.</span> <span class="post-toc-text">条形图</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#饼图"><span class="post-toc-number">3.6.3.</span> <span class="post-toc-text">饼图</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#直方图"><span class="post-toc-number">3.6.4.</span> <span class="post-toc-text">直方图</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#散点图"><span class="post-toc-number">3.6.5.</span> <span class="post-toc-text">散点图</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#础数据分析：Pandas"><span class="post-toc-number">4.</span> <span class="post-toc-text">础数据分析：Pandas</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Series"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">Series</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#创建"><span class="post-toc-number">4.1.1.</span> <span class="post-toc-text">创建</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#矢量运算"><span class="post-toc-number">4.1.2.</span> <span class="post-toc-text">矢量运算</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#DataFrame"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">DataFrame</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#创建-1"><span class="post-toc-number">4.2.1.</span> <span class="post-toc-text">创建</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数据读取"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">数据读取</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#CSV"><span class="post-toc-number">4.3.1.</span> <span class="post-toc-text">CSV</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#JSON"><span class="post-toc-number">4.3.2.</span> <span class="post-toc-text">JSON</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Excel"><span class="post-toc-number">4.3.3.</span> <span class="post-toc-text">Excel</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#属性与方法"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">属性与方法</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#高级科学计算：Scipy"><span class="post-toc-number">5.</span> <span class="post-toc-text">高级科学计算：Scipy</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#模块"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">模块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#优化和拟合"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">优化和拟合</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#统计"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">统计</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">6.</span> <span class="post-toc-text">参考资料</span></a></li></ol></div></div><div class="post-view-recommend"><div class="post-view-recommend-title">为你推荐</div><div class="post-view-recommend-item"><h4><a href="/stories/2019-03-24/后端/Git Commit 规范要求/index.html">Git Commit 规范要求</a><div class="post-view-recommend-author"><img src="/assets/avatar/a1.jpeg" alt><span>Robot<span class="dot"> · </span> 智能的小编</span></div></h4><div class="post-view-recommend-summary">本文是本厂的 Git Commit 提交的注释规范要求，请大家养成良好的习惯，严格的遵守规则，谢谢。
+
+规范提交的格式：type: message，注意中间使用 : 分割（后面必须带有一个空格），内容不超过 50 字。
+type 用于指定提交的 commit 的类别，下面只允许以下几个动词原语。
+
+add - 新增加的 ...</div></div><div class="post-view-recommend-item"><h4><a href="/stories/2019-05-06/小程序/谈谈小程序的底层原理/index.html">谈谈小程序的底层原理</a><div class="post-view-recommend-author"><img src="/assets/avatar/a1.jpeg" alt><span>Robot<span class="dot"> · </span> 智能的小编</span></div></h4><div class="post-view-recommend-summary">小程序就是基于当前的 Web 规范实现的一种程序，运行在微信里面，既然是基于 Web 规范，那自然离不开 HTML，CSS 和 JS，虽然微信官方给出了不一样的名称：WXML，WXSS，但本质上还是在整个 Web 体系之下构建的。
+这是我为大家带来的一篇微信小程序底层实现原理科普文章，主要讲述了微信小程序的整体架构设计 ...</div></div><div class="post-view-recommend-item"><h4><a href="/stories/2019-03-26/运维/研发及运维上线操作军规/index.html">研发及运维上线操作军规</a><div class="post-view-recommend-author"><img src="/assets/avatar/a1.jpeg" alt><span>Robot<span class="dot"> · </span> 智能的小编</span></div></h4><div class="post-view-recommend-summary">为了保证生产环境的持续、稳定、高效地运转，并且使新同学更快的掌握线上操作的基本方法，编写本文加以约束。
+
+名称解析
+OP：运维人员
+RD：研发人员
+FE：前端开发人员
+BE：后端开发人员
+QA：测试人员
+PM：产品经理
+DBA：数据库管理员
+
+1. 线上操作条款 1.1：禁止流量高峰时期，进行影响 cache 的升级
+ ...</div></div></div><script>!function(){var t=$(".post-toc .post-toc-link"),o=$(".post-view-toc-header > i"),e=$(".post-view-toc").width(),s=$(".post-view-toc"),i=!0,r=!1;$(".post-view-markdown p > img").attr("data-action","zoom"),t.click(function(t){t.stopPropagation(),r=!0;var o=decodeURIComponent(t.currentTarget.hash),e=$(o).offset().top-75,i=Math.max(300,Math.min(e,800));$("html,body").stop().animate({scrollTop:e},i,function(){r=!1,$(".post-toc-link").removeClass("post-view-toc-active"),$(t.currentTarget).addClass("post-view-toc-active")})}),o.click(function(t){t.stopPropagation(),i?($(".post-toc").hide(),s.width(85),o.text("arrow_back").attr("title","展开")):($(".post-toc").show(),s.width(e),o.text("arrow_forward").attr("title","收起")),i=!i});var n=$(".post-toc-link").map(function(t,o){return{index:t,el:o,offset:$($(o).attr("href")).offset(),id:$(o).attr("href").slice(1)}}).toArray(),l=null,p=0,d=0;document.addEventListener("scroll",function(t){var o=$(document).scrollTop();$(document).height();s&&(o+60>.5*$(window).height()?s.show():s.hide());for(var e=null,i=0;i<n.length&&!(o+100<=n[i].offset.top);i++)e=n[i];if(!e||!l||e.id!==l.id){if((l=e)&&l.el&&!r){function a(t){t<300?t=0:t-=100,s.stop().animate({scrollTop:t},300)}$(".post-toc-link").removeClass("post-view-toc-active"),$(l.el).addClass("post-view-toc-active");var c=$(l.el).offset().top-$(n[0].el).offset().top;0<o-p&&0<c-d&&(a(c),d=c),o-p<0&&c-d<0&&(a(c),d=c)}p=o}})}();</script></div><div class="page-footer"><div class="page-footer-main"><div class="page-footer-top"><header><div class="page-footer-title">大数据与智能计算实验室</div><div class="page-footer-summary"><span>大数据与智能计算实验室是在我校（电子科技大学中山学院）大数据及其应用平台背景下，以计算机学院为依托单位，以大数据与智能计算实验室为研究基地，整合我校计算机学院、电子信息学院、行业龙头企业、政府部门等多方骨干科研力量和社会力量。</span></div></header><section><div><div class="page-footer-info-title">了解更多</div><div><a class="page-footer-link" href="/">首页</a></div><div><a class="page-footer-link" href="/">商业合作</a></div><div><a class="page-footer-link" href="/blog/">技术博客</a></div><div><a class="page-footer-link" href="/about/">关于我们</a></div><div><a class="page-footer-link" href="/joinus/">加入我们</a></div></div><div><div class="page-footer-info-title">合作伙伴</div><div><a class="page-footer-link" href="https://www.aliyun.com" target="_blank"><img src="/assets/icon/aliyun.svg" alt="阿里云"></a></div><div><a class="page-footer-link" href="https://github.com/" target="_blank"><img src="/assets/icon/github.svg" alt="Github" style="height:30px;width:78px;padding-left:3px"></a></div></div></section></div><footer><div>电子科技大学中山学院大数据与智能计算实验室 © 2018 - 2020</div></footer></div></div><div class="page-goto-top"><i class="material-icons">arrow_upward</i><script>!function(){function o(o){var t=$(document).scrollTop();$(window).height()<t?$(".page-goto-top").show():$(".page-goto-top").hide()}$(".page-goto-top").on("click",function(o){$("html,body").animate({scrollTop:0},1e3)}),document.addEventListener("scroll",o),o()}();</script></div></body></html>
